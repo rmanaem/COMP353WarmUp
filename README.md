@@ -12,9 +12,7 @@ Course: COMP 353 of Winter 2021
 
 ## Team Members
 
-* Jacob Babity
+* Alexander Fourneaux
 * Arman Jahanpour
-* Seaim Khan
-* Roger Matadeen
+* Elvira Konovalov
 * Antoine Poulin
-* Runze Zhu
