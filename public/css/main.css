@@ -6,28 +6,35 @@ html, body {
     height: 100vh;
     margin: 0;
 }
+
 .full-height {
     height: 100vh;
 }
+
 .flex-center {
     align-items: center;
     display: flex;
     justify-content: center;
 }
+
 .position-ref {
     position: relative;
 }
+
 .top-right {
     position: absolute;
     right: 10px;
     top: 18px;
 }
+
 .content {
     text-align: center;
 }
+
 .title {
     font-size: 70px;
 }
+
 .links > a {
     color: #636b6f;
     padding: 0 25px;
@@ -39,14 +46,13 @@ html, body {
 }
 
 .button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #636b6f;
     color: white;
-    background-color:#636b6f;
-    font-weight: 600;
     border-radius: 8px;
-    height: 50px;
     margin: 25px;
-    padding: 0 25px;
-    cursor: pointer;
+    padding: 8px 6px 8px 6px;
 }
 
 .button:hover {
@@ -60,5 +66,5 @@ html, body {
 }
 
 .m-b-md {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }

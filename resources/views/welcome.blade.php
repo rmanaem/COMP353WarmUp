@@ -32,7 +32,7 @@
                     <a href="https://github.com/Dwarf1er/COMP353WarmUp/">GitHub Repository</a>
                 </div>
                 <div>
-                    <button href="" type="button" class="button">Database search tools</button>
+                    <a href="/search" class="button">Database search tools</a>
                 </div>
             </div>
         </div>
