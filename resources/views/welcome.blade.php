@@ -17,7 +17,7 @@
             @endif
 
             <div class="content">
-                <img src="{{asset("/images/covid.png")}}" alt="covid virus molecule">
+                <img src="{{URL::asset("/images/covid.png")}}" alt="covid virus molecule">
                 <div class="title m-b-md">
                     COMP 353 Warm-Up Project<br />
                     Covid-19 Spread Tracking
