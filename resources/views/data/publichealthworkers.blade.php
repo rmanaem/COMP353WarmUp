@@ -3,7 +3,7 @@
 @section('content')
     <div class="content">
         <div class="title m-b-md">
-            Public Heatlh Workers
+            Public Health Workers
         </div>
         <div class="">
         </div>
