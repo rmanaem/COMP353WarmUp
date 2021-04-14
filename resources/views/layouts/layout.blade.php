@@ -40,6 +40,9 @@
                         <a class="nav-link" href="/recommendations">Recommendations</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/data">Data</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/messages">Messages</a>
                     </li>
                 </ul>
