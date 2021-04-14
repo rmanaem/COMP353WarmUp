@@ -13,12 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// CRUD API views
+Route::get('/data/facilities', function () {
+    return view('/data/facilities');
 });
 
-Route::get('/data', function () {
-    return view('data');
+Route::get('/data/groupzones', function () {
+    return view('/data/groupzones');
+});
+
+Route::get('/data/persons', function () {
+    return view('/data/persons');
+});
+
+Route::get('/data/publichealthworkers', function () {
+    return view('/data/publichealthworkers');
+});
+
+Route::get('/data/regions', function () {
+    return view('/data/regions');
+});
+
+// Main Views
+Route::get('/', function () {
+    return view('welcome');
 });
 
 Route::get('/debug', function () {

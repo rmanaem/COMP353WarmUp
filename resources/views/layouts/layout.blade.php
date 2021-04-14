@@ -39,8 +39,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/recommendations">Recommendations</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/data">Data</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Data
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/data/persons">Persons</a>
+                            <a class="dropdown-item" href="/data/publichealthworkers">Public Health Workers</a>
+                            <a class="dropdown-item" href="/data/facilities">Facilities</a>
+                            <a class="dropdown-item" href="/data/regions">Regions</a>
+                            <a class="dropdown-item" href="/data/groupzones">Group Zones</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/messages">Messages</a>
