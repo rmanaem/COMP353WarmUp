@@ -17,6 +17,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('search', function () {
-    return view('search');
+Route::get('/data', function () {
+    return view('data');
+});
+
+Route::get('/debug', function () {
+    return view('debug');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/messages', function () {
+    return view('messages');
+});
+
+Route::get('/recommendations', function () {
+    return view('recommendations');
 });

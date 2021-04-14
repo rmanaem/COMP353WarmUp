@@ -19,7 +19,7 @@
             <div class="content">
                 <img src="{{URL::asset("/images/covid.png")}}" alt="covid virus molecule">
                 <div class="title m-b-md">
-                    COMP 353 Warm-Up Project<br />
+                    COMP 353 Project<br />
                     Covid-19 Spread Tracking
                 </div>
                 <div class="links">
@@ -32,7 +32,7 @@
                     <a href="https://github.com/Dwarf1er/COMP353WarmUp/">GitHub Repository</a>
                 </div>
                 <div>
-                    <a href="{{URL::to('search')}}" class="button">Database search tools</a>
+                    <a href="{{URL::to('data')}}" class="button">Log In</a>
                 </div>
             </div>
         </div>
