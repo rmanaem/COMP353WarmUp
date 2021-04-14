@@ -31,9 +31,6 @@
                 <div class="links">
                     <a href="https://github.com/Dwarf1er/COMP353WarmUp/">GitHub Repository</a>
                 </div>
-                <div>
-                    <a href="{{URL::to('data')}}" class="button">Log In</a>
-                </div>
             </div>
         </div>
 @endsection
