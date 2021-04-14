@@ -26,7 +26,7 @@ In a powershell window enter the following commands:
 cd "directory/where/you/cloned/the/repo"
 php artisan serve
 ```
-The project will run here: http://localhost:8080
+The project will run here: http://localhost:8000
 
 # Languages 
 
