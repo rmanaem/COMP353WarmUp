@@ -1,0 +1,17 @@
+INSERT INTO PostalCode (CityID, Code) VALUES
+(1, 'H9W6G8'),
+(1, 'H9J2B1'),
+(2, 'H9S1A4'),
+(3, 'H9R4O4'),
+(3, 'H9R6D1'),
+(4, 'G1J9P2'),
+(4, 'G1K2T5'),
+(4, 'G1T2H6'),
+(5, 'C1A62W'),
+(5, 'C1C7I0'),
+(6, 'C1N6F0'),
+(7, 'V8T2T3'),
+(7, 'V8T8TV'),
+(7, 'V8T1L0'),
+(8, 'V8J4T7'),
+(8, 'V8J5C9');
