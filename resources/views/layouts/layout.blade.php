@@ -55,7 +55,7 @@
                         <a class="nav-link" href="/messages">Messages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/form">Form</a>
+                        <a class="nav-link" href="/symptomTracking">Symptom Tracking</a>
                     </li>
                 </ul>
             </div>

@@ -43,10 +43,6 @@ Route::get('/debug', function () {
     return view('debug');
 });
 
-Route::get('/form', function () {
-    return view('form');
-});
-
 Route::get('/login', function () {
     return view('login');
 });
@@ -57,4 +53,8 @@ Route::get('/messages', function () {
 
 Route::get('/recommendations', function () {
     return view('recommendations');
+});
+
+Route::get('/symptomTracking', function () {
+    return view('symptomTracking');
 });
