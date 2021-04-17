@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,14 @@ Route::get('/data/groupzones', function () {
     return view('/data/groupzones');
 });
 
-Route::get('/data/persons', function () {
-    return view('/data/persons');
-});
+// PERSONS
+Route::get('/data/persons/{id}', [Controllers\PersonsController::class, 'index']);
+
+Route::get('/data/persons/delete/{id}', [Controllers\PersonsController::class, 'delete']);
+
+Route::get('/data/persons/edit/{id}', [Controllers\PersonsController::class, 'edit']);
+
+Route::get('/data/persons/new/{id}', [Controllers\PersonsController::class, 'new']);
 
 Route::get('/data/publichealthworkers', function () {
     return view('/data/publichealthworkers');

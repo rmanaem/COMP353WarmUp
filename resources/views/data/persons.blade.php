@@ -6,6 +6,7 @@
             Persons
         </div>
         <div class="">
+        <h1> Test data: {{$test}} </h1>
         </div>
     </div>
 @endsection
