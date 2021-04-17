@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row">
-            <form class="col-md-4" action="/login" method="post">     
+            <form class="col-md-6" action="/login" method="post">     
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block">Log in</button>
                         </div>
