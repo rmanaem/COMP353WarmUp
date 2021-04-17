@@ -24,7 +24,7 @@ Route::get('/data/groupzones', function () {
 });
 
 // PERSONS
-Route::get('/data/persons/{id}', [Controllers\PersonsController::class, 'index']);
+Route::get('/data/persons/', [Controllers\PersonsController::class, 'index']);
 
 Route::get('/data/persons/delete/{id}', [Controllers\PersonsController::class, 'delete']);
 

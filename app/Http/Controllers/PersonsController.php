@@ -3,41 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class PersonsController extends Controller {
-    public function index($id) {
-        
-        // Perform logic here
-
-        return view ('/data/persons', [
-            'test' => "$id is being searched for"
-        ]);
+    public function index() {
+        return $this->FetchView();
     }
     
     public function edit($id) {
         
         // Perform logic here
 
-        return view ('/data/persons', [
-            'test' => "$id was updated"
-        ]);
+        return $this->FetchView();
     }
     
     public function delete($id) {
         
         // Perform logic here
-
-        return view ('/data/persons', [
-            'test' => "$id was deleted"
-        ]);
+        
+        return $this->FetchView();
     }
     
     public function new($id) {
         
         // Perform logic here
+        
+        return $this->FetchView();
+    }
 
+    private function FetchView() {
+
+        $persons = DB::table('person')->get();
+        
         return view ('/data/persons', [
-            'test' => "$id was added"
+            'persons' => $persons
         ]);
     }
 }
