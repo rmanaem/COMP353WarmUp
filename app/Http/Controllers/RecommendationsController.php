@@ -27,28 +27,30 @@ class RecommendationsController extends Controller
         if ($_POST['text'] == '') {
             array_push($alerts, [
                 'type' => 'danger',
-                'text' => "Texts is required!"
+                'text' => "Text is required!"
             ]);
-        }                 
-            // Update the recommendation
-            try {
-                DB::table('recommendation')
-                    ->where('ID', '=', $_POST['id'])
-                    ->update([
-                    'Text' => $_POST['text']
-                ]);
-                array_push($alerts, [
-                    'type' => 'success',
-                    'text' => "Recommendation updated"
-                ]);
-            } catch(\Illuminate\Database\QueryException $ex) {
-                $message = $ex->getMessage();
-                array_push($alerts, [
-                    'type' => 'danger',
-                    'text' => "Query exception: $message"
-                ]);
-                return $this->FetchView($alerts);
-            }
+        }
+
+        // Update the recommendation
+        try {
+            DB::table('recommendation')
+                ->where('ID', '=', $_POST['id'])
+                ->update([
+                'Text' => $_POST['text']
+            ]);
+            array_push($alerts, [
+                'type' => 'success',
+                'text' => "Recommendation updated"
+            ]);
+        } catch(\Illuminate\Database\QueryException $ex) {
+            $message = $ex->getMessage();
+            array_push($alerts, [
+                'type' => 'danger',
+                'text' => "Query exception: $message"
+            ]);
+            return $this->FetchView($alerts);
+        }
+
         return $this->FetchView($alerts);
     }
 
@@ -87,6 +89,13 @@ class RecommendationsController extends Controller
                 'text' => 'You do not have permission to perform this action!'
             ]);
             return $this->FetchView($alerts);
+        }
+
+        if ($_POST['text'] == '') {
+            array_push($alerts, [
+                'type' => 'danger',
+                'text' => "Text is required!"
+            ]);
         }
 
         // Create new recommendation
