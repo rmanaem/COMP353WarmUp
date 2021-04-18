@@ -27,11 +27,16 @@ html, body {
     top: 18px;
 }
 
-.content {
+.home {
     text-align: center;
 }
 
+form, .row {
+    justify-content: center;
+}
+
 .title {
+    text-align: center;
     font-size: 70px;
 }
 

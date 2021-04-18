@@ -53,7 +53,7 @@ Route::get('/form', function () {
     return view('form');
 });
 
-Route::get('/login', function () {
+Route::post('/login', function () {
     return view('login');
 });
 
