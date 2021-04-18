@@ -83,16 +83,16 @@
         @yield('content')
 
         <footer class="bg-dark text-center text-lg-start footer">
-            <div class="container p-2">
-                <div class="row">
-                    <div class="col">
-                        <h6>Created at Concordia University Department of Engineering and Computer Science | COMP 353 Databases - Winter 2021</h6>
-                    </div>
+            <div class="row">
+                <div class="col">
+                    <h6>Created at Concordia University Department of Engineering and Computer Science | COMP 353 Databases - Winter 2021</h6>
                 </div>
             </div>
-            <div class="text-center p-4 lower-footer">
-                © 2021 Copyright:
-                <a class="text-light" href="https://github.com/Dwarf1er/COMP353WarmUp/">Team wdc353_4</a>
+            <div class="row">
+                <div class="col">
+                    © 2021 Copyright:
+                    <a class="text-light" href="https://github.com/Dwarf1er/COMP353WarmUp/">Team wdc353_4</a>
+                </div>
             </div>
         </footer>
     </body>

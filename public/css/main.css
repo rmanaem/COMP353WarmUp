@@ -3,7 +3,8 @@ html, body {
     color: #636b6f;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
-    height: 100vh;
+    min-height: 100vh;
+    position: relative;
     margin: 0;
 }
 
@@ -54,10 +55,8 @@ form, .row {
     position: absolute;
     bottom: 0;
     width: 100%;
-}
-
-.lower-footer {
-    background-color: rgba(0, 0, 0, 0.2);
+    height: 10%;
+    padding-top: 1%;
 }
 
 .button {
