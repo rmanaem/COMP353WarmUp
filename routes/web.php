@@ -24,7 +24,7 @@ Route::get('/data/groupzones', function () {
     return view('/data/groupzones');
 });
 
-// PERSONS
+// Persons
 Route::get('/data/persons/', [Controllers\PersonsController::class, 'index']);
 Route::get('/data/persons/delete/{id}', [Controllers\PersonsController::class, 'delete']);
 Route::post('/data/persons/edit', [Controllers\PersonsController::class, 'edit']);
@@ -34,9 +34,11 @@ Route::get('/data/publichealthworkers', function () {
     return view('/data/publichealthworkers');
 });
 
-Route::get('/data/regions', function () {
-    return view('/data/regions');
-});
+// Regions
+Route::get('/data/regions/', [Controllers\RegionsController::class, 'index']);
+Route::get('/data/regions/delete/{id}', [Controllers\RegionsController::class, 'delete']);
+Route::post('/data/regions/edit', [Controllers\RegionsController::class, 'edit']);
+Route::post('/data/regions/new', [Controllers\RegionsController::class, 'new']);
 
 // Main Views
 Route::get('/', function () {
