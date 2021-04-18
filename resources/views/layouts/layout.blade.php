@@ -1,6 +1,7 @@
 <?php
     use App\Http\Helpers;
     $account = Helpers\LoginHelper::GetAccount();
+    $permissions = Helpers\LoginHelper::GetPermissionsLevel();
 ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
