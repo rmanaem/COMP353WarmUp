@@ -28,9 +28,9 @@ Route::get('/data/persons/', [Controllers\PersonsController::class, 'index']);
 
 Route::get('/data/persons/delete/{id}', [Controllers\PersonsController::class, 'delete']);
 
-Route::get('/data/persons/edit/{id}', [Controllers\PersonsController::class, 'edit']);
+Route::post('/data/persons/edit', [Controllers\PersonsController::class, 'edit']);
 
-Route::get('/data/persons/new/{id}', [Controllers\PersonsController::class, 'new']);
+Route::post('/data/persons/new', [Controllers\PersonsController::class, 'new']);
 
 Route::get('/data/publichealthworkers', function () {
     return view('/data/publichealthworkers');
