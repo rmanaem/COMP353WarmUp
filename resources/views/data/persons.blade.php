@@ -26,7 +26,7 @@
                 <th scope="col" colspan=2>Actions</th>
             </tr>
         </thead>
-        <form action="" method="GET">
+        <form action="/data/persons" method="GET">
             <tr>
                 <td scope="row"><input type="text" class="form-control form-control-sm" name="firstname" placeholder="First name" value="<?= $_GET["firstname"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="lastname" placeholder="Last name" value="<?= $_GET["lastname"] ?? '' ?>" /></td>
