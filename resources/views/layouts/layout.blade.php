@@ -82,7 +82,7 @@
 
         @yield('content')
 
-        <footer class="bg-dark text-center text-lg-start">
+        <footer class="bg-dark text-center text-lg-start footer">
             <div class="container p-2">
                 <div class="row">
                     <div class="col">
@@ -90,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center p-3 lower-footer">
+            <div class="text-center p-4 lower-footer">
                 © 2021 Copyright:
                 <a class="text-light" href="https://github.com/Dwarf1er/COMP353WarmUp/">Team wdc353_4</a>
             </div>

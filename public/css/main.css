@@ -50,6 +50,12 @@ form, .row {
     text-transform: uppercase;
 }
 
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 .lower-footer {
     background-color: rgba(0, 0, 0, 0.2);
 }
