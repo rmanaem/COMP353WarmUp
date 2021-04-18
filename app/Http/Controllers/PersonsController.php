@@ -303,8 +303,8 @@ class PersonsController extends Controller {
         }
         
         // Serve the view
-        return view ('/data/query', [
-            'query' => $query->get(),
+        return view ('/data/persons', [
+            'persons' => $query->get(),
             'alerts' => $alerts
         ]);
     }
