@@ -6,9 +6,6 @@
     <div class="title m-b-md">
         Persons
     </div>
-    <?php foreach ($alerts as $alert) : ?>
-        <div class="alert alert-<?= $alert['type'] ?>"><?= $alert['text'] ?></div>
-    <?php endforeach; ?>
     <table class="table">
         <thead>
             <tr>

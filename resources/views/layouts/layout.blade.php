@@ -1,3 +1,7 @@
+<?php
+    use App\Http\Helpers;
+    $account = Helpers\LoginHelper::GetAccount();
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -21,7 +25,7 @@
     </head>
     <body class="antialiased">
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="{{URL::asset("/images/covid.png")}}" width="30" height="30" alt="covid virus molecule">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,9 +37,18 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <?php if ($account == null) : ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login</a>
                     </li>
+                    <?php else : ?>
+                    <li class="nav-item">
+                        <div class="nav-link">Welcome, <?= $account->FirstName ?> <?= $account->LastName ?></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/recommendations">Recommendations</a>
                     </li>
@@ -60,7 +73,12 @@
                 </ul>
             </div>
         </nav>
-        
+
+        <?php $alerts = $alerts ?? [] ?>
+        <?php foreach ($alerts as $alert) : ?>
+            <div class="alert alert-<?= $alert['type'] ?>"><?= $alert['text'] ?></div>
+        <?php endforeach; ?>
+
         @yield('content')
 
     </body>

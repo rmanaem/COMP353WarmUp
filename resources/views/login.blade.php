@@ -15,14 +15,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Medicare ID" required>
+                            <input name="user" type="text" class="form-control" placeholder="Medicare ID" required>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Date of Birth" required>
+                            <input name="pass" type="password" class="form-control" placeholder="Date of Birth" required>
                         </div>
                     </div>
                 </div>
