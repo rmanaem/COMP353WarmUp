@@ -64,3 +64,7 @@ Route::get('/messages', function () {
 Route::get('/recommendations', function () {
     return view('recommendations');
 });
+
+Route::get('/symptomTracking', function () {
+    return view('symptomTracking');
+});
