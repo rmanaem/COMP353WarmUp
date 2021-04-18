@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers;
 use Illuminate\Support\Facades\DB;
 
 class PersonsController extends Controller {
@@ -12,6 +13,15 @@ class PersonsController extends Controller {
     
     public function edit() {
         $alerts = [];
+
+        $permissions = Helpers\LoginHelper::GetPermissionsLevel();
+        if ($permissions < 2) {
+            array_push($alerts, [
+                'type' => 'warning',
+                'text' => 'You do not have permission to perform this action!'
+            ]);
+            return $this->FetchView($alerts);
+        }
 
         if ($_POST['city'] == '' || $_POST['postal'] == '' || $_POST['province'] == '') {
             array_push($alerts, [
@@ -126,6 +136,16 @@ class PersonsController extends Controller {
     
     public function delete($id) {
         $alerts = [];
+
+        $permissions = Helpers\LoginHelper::GetPermissionsLevel();
+        if ($permissions < 2) {
+            array_push($alerts, [
+                'type' => 'warning',
+                'text' => 'You do not have permission to perform this action!'
+            ]);
+            return $this->FetchView($alerts);
+        }
+
         try {
             DB::table('person')->delete($id);
         } catch(\Illuminate\Database\QueryException $ex) {
@@ -141,6 +161,15 @@ class PersonsController extends Controller {
     
     public function new() {
         $alerts = [];
+
+        $permissions = Helpers\LoginHelper::GetPermissionsLevel();
+        if ($permissions < 2) {
+            array_push($alerts, [
+                'type' => 'warning',
+                'text' => 'You do not have permission to perform this action!'
+            ]);
+            return $this->FetchView($alerts);
+        }
 
         if ($_POST['city'] == '' || $_POST['postal'] == '' || $_POST['province'] == '') {
             array_push($alerts, [
@@ -303,7 +332,14 @@ class PersonsController extends Controller {
         }
         
         // Serve the view
-        return view ('/data/persons', [
+        $permissions = Helpers\LoginHelper::GetPermissionsLevel();
+        $page = '';
+        if ($permissions == 2) {
+            $page = '/admindata/persons';
+        } else {
+            $page = '/data/persons';
+        }
+        return view ($page, [
             'persons' => $query->get(),
             'alerts' => $alerts
         ]);
