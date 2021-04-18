@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Helpers;
 
 class PublicHealthCentresController extends Controller
 {
@@ -114,9 +116,9 @@ class PublicHealthCentresController extends Controller
         $permissions = Helpers\LoginHelper::GetPermissionsLevel();
         $page = '';
         if ($permissions == 2) {
-            $page = '/admindata/publichealthcentre';
+            $page = '/admindata/publichealthcentres';
         } else {
-            $page = '/data/publichealthcentre';
+            $page = '/data/publichealthcentres';
         }
         return view ($page, [
             'publichealthcentres' => $query->get(),
