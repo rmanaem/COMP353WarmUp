@@ -55,9 +55,11 @@ Route::get('/messages', function () {
     return view('messages');
 });
 
-Route::get('/recommendations', function () {
-    return view('recommendations');
-});
+// Recommendations
+Route::get('/recommendations/', [Controllers\RecommendationsController::class, 'index']);
+Route::get('/recommendations/delete/{id}', [Controllers\RecommendationsController::class, 'delete']);
+Route::post('/recommendations/edit', [Controllers\RecommendationsController::class, 'edit']);
+Route::post('/recommendations/new', [Controllers\RecommendationsController::class, 'new']);
 
 Route::get('/symptomTracking', [Controllers\SymptomTrackingController::class, 'index']);
 Route::post('/symptomTracking', [Controllers\SymptomTrackingController::class, 'submit']);
