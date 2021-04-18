@@ -13,7 +13,7 @@ class LoginHelper {
                     ->leftJoin('publichealthworker', 'publichealthworker.personID', '=', 'person.id')
                     ->where('person.medicareID', '=', $user)
                     ->where('person.dateofbirth', '=', $pass)
-                    ->select('person.id as PersonID', 'publichealthworker.id as WorkerID', 'FirstName', 'LastName')
+                    ->select('person.id as ID', 'publichealthworker.id as WorkerID', 'FirstName', 'LastName', 'MedicareID')
                     ->first();
     }
 

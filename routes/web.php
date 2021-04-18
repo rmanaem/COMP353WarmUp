@@ -59,6 +59,5 @@ Route::get('/recommendations', function () {
     return view('recommendations');
 });
 
-Route::get('/symptomTracking', function () {
-    return view('symptomTracking');
-});
+Route::get('/symptomTracking', [Controllers\SymptomTrackingController::class, 'index']);
+Route::post('/symptomTracking', [Controllers\SymptomTrackingController::class, 'submit']);
