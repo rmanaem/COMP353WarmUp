@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,14 @@ Route::get('/data/groupzones', function () {
     return view('/data/groupzones');
 });
 
-Route::get('/data/persons', function () {
-    return view('/data/persons');
-});
+// PERSONS
+Route::get('/data/persons/', [Controllers\PersonsController::class, 'index']);
+
+Route::get('/data/persons/delete/{id}', [Controllers\PersonsController::class, 'delete']);
+
+Route::post('/data/persons/edit', [Controllers\PersonsController::class, 'edit']);
+
+Route::post('/data/persons/new', [Controllers\PersonsController::class, 'new']);
 
 Route::get('/data/publichealthworkers', function () {
     return view('/data/publichealthworkers');
@@ -47,7 +53,7 @@ Route::get('/form', function () {
     return view('form');
 });
 
-Route::get('/login', function () {
+Route::post('/login', function () {
     return view('login');
 });
 
@@ -57,4 +63,8 @@ Route::get('/messages', function () {
 
 Route::get('/recommendations', function () {
     return view('recommendations');
+});
+
+Route::get('/symptomTracking', function () {
+    return view('symptomTracking');
 });
