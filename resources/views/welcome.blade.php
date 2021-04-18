@@ -17,19 +17,21 @@
             @endif
 
             <div class="content">
-                <img src="{{URL::asset("/images/covid.png")}}" alt="covid virus molecule">
-                <div class="title m-b-md">
-                    COMP 353 Project<br />
-                    Covid-19 Spread Tracking
-                </div>
-                <div class="links">
-                    <a href="https://github.com/afourneaux">Alexander Fourneaux</a>
-                    <a href="https://github.com/rmanaem">Arman Jahanpour</a>
-                    <a href="https://github.com/ElviraKonovalov">Elvira Konovalov</a>
-                    <a href="https://github.com/Dwarf1er">Antoine Poulin</a>
-                </div>
-                <div class="links">
-                    <a href="https://github.com/Dwarf1er/COMP353WarmUp/">GitHub Repository</a>
+                <div class="home">
+                    <img src="{{URL::asset("/images/covid.png")}}" alt="covid virus molecule">
+                    <div class="title m-b-md">
+                        COMP 353 Project<br />
+                        Covid-19 Spread Tracking
+                    </div>
+                    <div class="links">
+                        <a href="https://github.com/afourneaux">Alexander Fourneaux</a>
+                        <a href="https://github.com/rmanaem">Arman Jahanpour</a>
+                        <a href="https://github.com/ElviraKonovalov">Elvira Konovalov</a>
+                        <a href="https://github.com/Dwarf1er">Antoine Poulin</a>
+                    </div>
+                    <div class="links">
+                        <a href="https://github.com/Dwarf1er/COMP353WarmUp/">GitHub Repository</a>
+                    </div>
                 </div>
             </div>
         </div>
