@@ -20,7 +20,6 @@
                 <div class="home">
                     <img src="{{URL::asset("/images/covid.png")}}" alt="covid virus molecule">
                     <div class="title m-b-md">
-                        COMP 353 Project<br />
                         Covid-19 Spread Tracking
                     </div>
                     <div class="links">

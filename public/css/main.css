@@ -50,6 +50,10 @@ form, .row {
     text-transform: uppercase;
 }
 
+.lower-footer {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 .button {
     display: inline-block;
     text-decoration: none;
