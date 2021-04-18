@@ -61,9 +61,7 @@ Route::get('/messages', function () {
     return view('messages');
 });
 
-Route::get('/recommendations', function () {
-    return view('recommendations');
-});
+Route::get('/recommendations', [Controllers\RecommendationsController::class, 'index']);
 
 Route::get('/symptomTracking', function () {
     return view('symptomTracking');
