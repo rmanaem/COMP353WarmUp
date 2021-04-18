@@ -14,6 +14,7 @@ use App\Http\Controllers;
 |
 */
 
+
 // CRUD API views
 Route::get('/data/facilities', function () {
     return view('/data/facilities');
@@ -25,11 +26,8 @@ Route::get('/data/groupzones', function () {
 
 // PERSONS
 Route::get('/data/persons/', [Controllers\PersonsController::class, 'index']);
-
 Route::get('/data/persons/delete/{id}', [Controllers\PersonsController::class, 'delete']);
-
 Route::post('/data/persons/edit', [Controllers\PersonsController::class, 'edit']);
-
 Route::post('/data/persons/new', [Controllers\PersonsController::class, 'new']);
 
 Route::get('/data/publichealthworkers', function () {
@@ -49,13 +47,9 @@ Route::get('/debug', function () {
     return view('debug');
 });
 
-Route::get('/form', function () {
-    return view('form');
-});
-
-Route::post('/login', function () {
-    return view('login');
-});
+Route::get('/login', [Controllers\LoginController::class, 'index']);
+Route::post('/login', [Controllers\LoginController::class, 'login']);
+Route::get('/logout', [Controllers\LoginController::class, 'logout']);
 
 Route::get('/messages', function () {
     return view('messages');
@@ -65,6 +59,5 @@ Route::get('/recommendations', function () {
     return view('recommendations');
 });
 
-Route::get('/symptomTracking', function () {
-    return view('symptomTracking');
-});
+Route::get('/symptomTracking', [Controllers\SymptomTrackingController::class, 'index']);
+Route::post('/symptomTracking', [Controllers\SymptomTrackingController::class, 'submit']);
