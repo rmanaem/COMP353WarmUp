@@ -11,6 +11,7 @@
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Address</th>
+                <th scope="col">Number of Health Workers</th>
                 <th scope="col">Phone Number</th>
                 <th scope="col">Website</th>
                 <th scope="col">Type</th>
@@ -23,7 +24,8 @@
             <tr>
                 <td scope="row"><input type="text" class="form-control form-control-sm" name="name" placeholder="Name" value="<?= $_GET["name"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="address" placeholder="Address" value="<?= $_GET["address"] ?? '' ?>" /></td>
-                <td><input type="text" class="form-control form-control-sm" name="phone" placeholder="Phone Number" value="<?= $_GET["phonenumber"] ?? '' ?>" /></td>
+                <td><input type="text" class="form-control form-control-sm" name="numberofhealthworkers" placeholder="Number of Health Workers" value="<?= $_GET["numberofhealthworkers"] ?? '' ?>" /></td>
+                <td><input type="text" class="form-control form-control-sm" name="phonenumber" placeholder="Phone Number" value="<?= $_GET["phonenumber"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="website" placeholder="Website" value="<?= $_GET["website"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="type" placeholder="Type" value="<?= $_GET["type"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="drivethrough" placeholder="Drive Through" value="<?= $_GET["drivethrough"] ?? '' ?>" /></td>
@@ -36,7 +38,8 @@
             <tr>
                 <td scope="row"><input type="text" class="form-control form-control-sm" name="name" placeholder="Name" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="address" placeholder="Address"/></td>
-                <td><input type="text" class="form-control form-control-sm" name="phone" placeholder="Phone Number" /></td>
+                <td></td>
+                <td><input type="text" class="form-control form-control-sm" name="phonenumber" placeholder="Phone Number" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="website" placeholder="Website" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="type" placeholder="Type" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="drivethrough" placeholder="Drive Through" /></td>
@@ -48,6 +51,7 @@
             <tr id="publichealthcentre_<?= $publichealthcentre->ID ?>">
                 <td scope="row"><?= $publichealthcentre->Name ?></td>
                 <td><?= $publichealthcentre->Address ?></td>
+                <td><?= $publichealthcentre->NumberOfHealthWorkers ?? 0?></td>
                 <td><?= $publichealthcentre->PhoneNumber ?></td>
                 <td><?= $publichealthcentre->Website ?></td>
                 @if ($publichealthcentre->Type == 'c')
@@ -85,14 +89,15 @@
                 <tr id="editing_<?= $publichealthcentre->ID ?>" style="display:none">
                     <td scope="row">
                         <input type="hidden" name="id" value="<?= $publichealthcentre->ID ?>" />
-                        <input type="text" class="form-control form-control-sm" name="firstname" placeholder="First name" value="<?= $publichealthcentre->Name ?>" />
+                        <input type="text" class="form-control form-control-sm" name="name" placeholder="Name" value="<?= $publichealthcentre->Name ?>" />
                     </td>
-                    <td><input type="text" class="form-control form-control-sm" name="lastname" placeholder="Last name" value="<?= $publichealthcentre->Address ?>" /></td>
-                    <td><input type="text" class="form-control form-control-sm" name="dob" placeholder="Date of Birth" value="<?= $publichealthcentre->PhoneNumber ?>" /></td>
-                    <td><input type="text" class="form-control form-control-sm" name="medicare" placeholder="Medicare ID" value="<?= $publichealthcentre->Website ?>" /></td>
-                    <td><input type="text" class="form-control form-control-sm" name="phone" placeholder="Phone Number" value="<?= $publichealthcentre->Type ?>" /></td>
-                    <td><input type="text" class="form-control form-control-sm" name="address" placeholder="Address" value="<?= $publichealthcentre->DriveThrough ?>" /></td>
-                    <td><input type="text" class="form-control form-control-sm" name="postal" placeholder="Postal Code" value="<?= $publichealthcentre->AppointmentType ?>" /></td>
+                    <td><input type="text" class="form-control form-control-sm" name="address" placeholder="Address" value="<?= $publichealthcentre->Address ?>" /></td>
+                    <td></td>
+                    <td><input type="text" class="form-control form-control-sm" name="phonenumber" placeholder="Phone Number" value="<?= $publichealthcentre->PhoneNumber ?>" /></td>
+                    <td><input type="text" class="form-control form-control-sm" name="website" placeholder="Website" value="<?= $publichealthcentre->Website ?>" /></td>
+                    <td><input type="text" class="form-control form-control-sm" name="type" placeholder="Type" value="<?= $publichealthcentre->Type ?>" /></td>
+                    <td><input type="text" class="form-control form-control-sm" name="drivethrough" placeholder="Drive Through" value="<?= $publichealthcentre->DriveThrough ?>" /></td>
+                    <td><input type="text" class="form-control form-control-sm" name="appointmenttype" placeholder="Appointment Type" value="<?= $publichealthcentre->AppointmentType ?>" /></td>
                     <td><button type="button" class="btn btn-warning btn-sm w-100" onclick="Cancel(<?= $publichealthcentre->ID ?>)">Cancel</button></td>
                     <td><button type="submit" class="btn btn-success btn-sm w-100">Save</button></td>
                 </tr>
