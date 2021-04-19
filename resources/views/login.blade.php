@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row">
-            <form class="col-md-6" action="/login" method="post">
+            <form class="col-md-6" action="login" method="post">
                 @csrf  
                 <div class="row">
                     <div class="col-md-6">

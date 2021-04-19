@@ -31,7 +31,7 @@
     </head>
     <body class="antialiased">
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="">
                 <img src="{{URL::asset("/images/covid.png")}}" width="30" height="30" alt="covid virus molecule">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,22 +40,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <?php if ($account == null) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" href="login">Login</a>
                     </li>
                     <?php else : ?>
                     <li class="nav-item">
                         <div class="nav-link">Welcome, <?= $account->FirstName ?> <?= $account->LastName ?></div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
+                        <a class="nav-link" href="logout">Logout</a>
                     </li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/recommendations">Recommendations</a>
+                        <a class="nav-link" href="recommendations">Recommendations</a>
                     </li>
                     @if($permissions != 0)
                     <li class="nav-item dropdown">
@@ -63,13 +63,13 @@
                         Data
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/data/persons">Persons</a>
+                            <a class="dropdown-item" href="data/persons">Persons</a>
                             @if($permissions == 2)
-                                <a class="dropdown-item" href="/data/publichealthworkers">Public Health Workers</a>
+                                <a class="dropdown-item" href="data/publichealthworkers">Public Health Workers</a>
                             @endif
-                            <a class="dropdown-item" href="/data/publichealthcentres">Public Health Centres</a>
-                            <a class="dropdown-item" href="/data/regions">Regions</a>
-                            <a class="dropdown-item" href="/data/groupzones">Group Zones</a>
+                            <a class="dropdown-item" href="data/publichealthcentres">Public Health Centres</a>
+                            <a class="dropdown-item" href="data/regions">Regions</a>
+                            <a class="dropdown-item" href="data/groupzones">Group Zones</a>
                         </div>
                     </li>
                     @endif
@@ -79,13 +79,13 @@
                             Reports
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/symptomHistory">Symptom History</a>
+                                    <a class="dropdown-item" href="symptomHistory">Symptom History</a>
                             </div>
                         </li>
                     @endif
                     @if($permissions != 0)
                     <li class="nav-item">
-                        <a class="nav-link" href="/messages">Messages
+                        <a class="nav-link" href="messages">Messages
                         <?php if($hasMessages) : ?>
                             <span style="color:red">&#33;</span>
                         <?php endif; ?></a>
@@ -93,12 +93,12 @@
                     @endif
                     @if($permissions != 0)
                         <li class="nav-item">
-                            <a class="nav-link" href="/symptomTracking">Symptom Tracking</a>
+                            <a class="nav-link" href="symptomTracking">Symptom Tracking</a>
                         </li>
                     @endif
                     @if($permissions == 2)
                     <li class="nav-item">
-                        <a class="nav-link" href="/pcrEntry">PCR Results Entry</a>
+                        <a class="nav-link" href="pcrEntry">PCR Results Entry</a>
                     </li>
                     @endif
                 </ul>

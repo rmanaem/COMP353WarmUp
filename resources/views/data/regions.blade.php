@@ -14,7 +14,7 @@
                 <th scope="col" colspan=1>Actions</th>
             </tr>
         </thead>
-        <form action="/data/regions" method="GET">
+        <form action="data/regions" method="GET">
             <tr>
                 <td scope="row"><input type="text" class="form-control form-control-sm" name="name" placeholder="Name" value="<?= $_GET["name"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="province" placeholder="Province" value="<?= $_GET["province"] ?? '' ?>" /></td>

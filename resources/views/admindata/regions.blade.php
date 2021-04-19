@@ -14,7 +14,7 @@
                 <th scope="col" colspan=2>Actions</th>
             </tr>
         </thead>
-        <form action="/data/regions" method="GET">
+        <form action="data/regions" method="GET">
             <tr>
                 <td scope="row"><input type="text" class="form-control form-control-sm" name="name" placeholder="Name" value="<?= $_GET["name"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="province" placeholder="Province" value="<?= $_GET["province"] ?? '' ?>" /></td>
@@ -22,7 +22,7 @@
                 <td colspan=2><button type="submit" class="btn btn-primary btn-sm w-100">Search</button></td>
             </tr>
         </form>
-        <form action="/data/regions/new" method="POST">
+        <form action="data/regions/new" method="POST">
         @csrf
             <tr>
                 <td scope="row"><input type="text" class="form-control form-control-sm" name="name" placeholder="Name" /></td>
@@ -39,10 +39,10 @@
                 <td><button class="btn btn-warning btn-sm w-100" onclick="Edit(<?= $region->ID ?>)">Edit</button></td>
                 <td>
                     <button id="delete_<?= $region->ID ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $region->ID ?>)">Delete</button>
-                    <a id="confirm_<?= $region->ID ?>" href="/data/regions/delete/<?= $region->ID ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
+                    <a id="confirm_<?= $region->ID ?>" href="data/regions/delete/<?= $region->ID ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
                 </td>
             </tr>
-            <form action="/data/regions/edit" method="POST">
+            <form action="data/regions/edit" method="POST">
             @csrf
                 <tr id="editing_<?= $region->ID ?>" style="display:none">
                     <td scope="row">

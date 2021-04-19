@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row">
-            <form class="col-md-4" action="/pcrEntry" method="POST">
+            <form class="col-md-4" action="pcrEntry" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col">
