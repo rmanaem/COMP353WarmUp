@@ -13,15 +13,15 @@ class ReportsController extends Controller {
 
     public function historyGet() {
         $alerts = [];
-        $person = DB::table('person')->where('medicareID', '=', $_POST['medicareID'])->first();
+        $person = DB::table('Person')->where('MedicareID', '=', $_POST['MedicareID'])->first();
         if ($person == null) {
             array_push($alerts, [
                 'type' => 'warning',
                 'text' => 'Medicare ID not found'
             ]);
         } else {
-            if (DB::table('pcrtest')->where('personID', '=', $person->ID)->where('DateOfTest', '=', $_POST['date'])->where('result', '=', '1')->exists()) {
-                $history = DB::table('symptomHistory')->where('PersonID',  '=', $person->ID)->get();
+            if (DB::table('PCRTest')->where('PersonID', '=', $person->ID)->where('DateOfTest', '=', $_POST['date'])->where('Result', '=', '1')->exists()) {
+                $history = DB::table('SymptomHistory')->where('PersonID',  '=', $person->ID)->get();
             } else {
                 array_push($alerts, [
                     'type' => 'warning',

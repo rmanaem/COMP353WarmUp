@@ -26,7 +26,7 @@ class PublicHealthCentresController extends Controller
 
         // Update the publichealthcentre
         try {
-            DB::table('publichealthcentre')
+            DB::table('PublicHealthCentre')
                 ->where('ID', '=', $_POST['id'])
                 ->update([
                 'Name' => $_POST['name'],
@@ -66,7 +66,7 @@ class PublicHealthCentresController extends Controller
         }
 
         try {
-            DB::table('publichealthcentre')->delete($id);
+            DB::table('PublicHealthCentre')->delete($id);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
             array_push($alerts, [
@@ -92,7 +92,7 @@ class PublicHealthCentresController extends Controller
 
         // Create new publichealthcentre
         try {
-            DB::table('publichealthcentre')->insert([
+            DB::table('PublicHealthCentre')->insert([
                 'Name' => $_POST['name'],
                 'Address' => $_POST['address'],
                 'PhoneNumber' => $_POST['phonenumber'],
@@ -122,50 +122,50 @@ class PublicHealthCentresController extends Controller
     private function FetchView($alerts) {
 
         // Get the table
-        $contracts = DB::table('employmentcontract')
-        ->whereNull('EndDate');
+        $contracts = DB::table('EmploymentContract')
+            ->whereNull('EndDate');
 
-        $counts = DB::table('publichealthcentre')
-                ->select('publichealthcentre.ID', DB::raw('count(*) as total'))
-                ->joinsub($contracts, 'employmentcontract', 'employmentcontract.publichealthcentreid', '=', 'publichealthcentre.id')
-                ->groupBy('publichealthcentre.ID');
+        $counts = DB::table('PublicHealthCentre')
+            ->select('PublicHealthCentre.ID', DB::raw('COUNT(*) as total'))
+            ->joinsub($contracts, 'EmploymentContract', 'EmploymentContract.PublicHealthCentreID', '=', 'PublicHealthCentre.ID')
+            ->groupBy('PublicHealthCentre.ID');
 
-        $query = DB::table('publichealthcentre')
-                ->leftJoinSub($counts, 'counts', 'publichealthcentre.ID', '=', 'counts.ID')
-                ->select('publichealthcentre.*', 'counts.total as NumberOfHealthWorkers');
+        $query = DB::table('PublicHealthCentre')
+            ->leftJoinSub($counts, 'counts', 'PublicHealthCentre.ID', '=', 'counts.ID')
+            ->select('PublicHealthCentre.*', 'counts.total as NumberOfHealthWorkers');
         
         // Apply search queries
         if (array_key_exists('name', $_GET) && $_GET['name'] != '') {
             $name = $_GET['name'];
-            $query = $query->where('name', 'like', "%$name%");
+            $query = $query->where('Name', 'like', "%$name%");
         }
         if (array_key_exists('address', $_GET) && $_GET['address'] != '') {
             $address = $_GET['address'];
-            $query = $query->where('address', 'like', "%$address%");
+            $query = $query->where('Address', 'like', "%$address%");
         }
         if (array_key_exists('numberofhealthworkers', $_GET) && $_GET['numberofhealthworkers'] != '') {
             $numberofhealthworkers = $_GET['numberofhealthworkers'];
-            $query = $query->having('numberofhealthworkers', 'like', "%$numberofhealthworkers%");
+            $query = $query->having('NumberOfHealthWorkers', 'like', "%$numberofhealthworkers%");
         }
         if (array_key_exists('phonenumber', $_GET) && $_GET['phonenumber'] != '') {
             $phonenumber = $_GET['phonenumber'];
-            $query = $query->where('phonenumber', 'like', "%$phonenumber%");
+            $query = $query->where('PhoneNumber', 'like', "%$phonenumber%");
         }
         if (array_key_exists('website', $_GET) && $_GET['website'] != '') {
             $website = $_GET['website'];
-            $query = $query->where('website', 'like', "%$website%");
+            $query = $query->where('Website', 'like', "%$website%");
         }
         if (array_key_exists('type', $_GET) && $_GET['type'] != '') {
             $type = $_GET['type'];
-            $query = $query->where('type', 'like', "%$type%");
+            $query = $query->where('Type', 'like', "%$type%");
         }
         if (array_key_exists('drivethrough', $_GET) && $_GET['drivethrough'] != '') {
             $drivethrough = $_GET['drivethrough'];
-            $query = $query->where('drivethrough', 'like', "%$drivethrough%");
+            $query = $query->where('DriveThrough', 'like', "%$drivethrough%");
         }
         if (array_key_exists('appointmenttype', $_GET) && $_GET['appointmenttype'] != '') {
             $appointmenttype = $_GET['appointmenttype'];
-            $query = $query->where('appointmenttype', 'like', "%$appointmenttype%");
+            $query = $query->where('AppointmentType', 'like', "%$appointmenttype%");
         }
 
         // Serve the view

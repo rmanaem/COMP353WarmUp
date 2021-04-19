@@ -283,52 +283,52 @@ class PersonsController extends Controller {
     private function FetchView($alerts) {
 
         // Get the table
-        $query = DB::table('person')
-            ->leftjoin('postalcode', 'postalcode.id', '=', 'person.postalcodeID')
-            ->leftjoin('city', 'city.id', '=', 'postalcode.cityID')
-            ->leftjoin('region', 'region.id', '=', 'city.regionid')
-            ->select('person.id as PersonID', 'person.*', 'postalcode.code as PostalCode', 'city.name as City', 'region.province as Province');
+        $query = DB::table('Person')
+            ->leftjoin('PostalCode', 'PostalCode.id', '=', 'Person.PostalCodeID')
+            ->leftjoin('City', 'City.ID', '=', 'PostalCode.CityID')
+            ->leftjoin('Region', 'Region.ID', '=', 'City.RegionID')
+            ->select('Person.ID as PersonID', 'Person.*', 'PostalCode.Code as PostalCode', 'City.Name as City', 'Region.Province as Province');
 
         // Apply search queries
         if (array_key_exists('firstname', $_GET) && $_GET['firstname'] != '') {
             $firstname = $_GET['firstname'];
-            $query = $query->where('firstname', 'like', "%$firstname%");
+            $query = $query->where('FirstName', 'like', "%$firstname%");
         }
         if (array_key_exists('lastname', $_GET) && $_GET['lastname'] != '') {
             $lastname = $_GET['lastname'];
-            $query = $query->where('lastname', 'like', "%$lastname%");
+            $query = $query->where('LastName', 'like', "%$lastname%");
         }
         if (array_key_exists('dob', $_GET) && $_GET['dob'] != '') {
             $dob = $_GET['dob'];
-            $query = $query->where('dateofbirth', 'like', "%$dob%");
+            $query = $query->where('DateOfBirth', 'like', "%$dob%");
         }
         if (array_key_exists('medicare', $_GET) && $_GET['medicare'] != '') {
             $medicare = $_GET['medicare'];
-            $query = $query->where('medicareID', 'like', "%$medicare%");
+            $query = $query->where('MedicareID', 'like', "%$medicare%");
         }
         if (array_key_exists('phone', $_GET) && $_GET['phone'] != '') {
             $phone = $_GET['phone'];
-            $query = $query->where('phonenumber', 'like', "%$phone%");
+            $query = $query->where('PhoneNumber', 'like', "%$phone%");
         }
         if (array_key_exists('address', $_GET) && $_GET['address'] != '') {
             $address = $_GET['address'];
-            $query = $query->where('address', 'like', "%$address%");
+            $query = $query->where('Address', 'like', "%$address%");
         }
         if (array_key_exists('postal', $_GET) && $_GET['postal'] != '') {
             $postal = $_GET['postal'];
-            $query = $query->where('postalcode.code', 'like', "%$postal%");
+            $query = $query->where('PostalCode.Code', 'like', "%$postal%");
         }
         if (array_key_exists('city', $_GET) && $_GET['city'] != '') {
             $city = $_GET['city'];
-            $query = $query->where('city.name', 'like', "%$city%");
+            $query = $query->where('City.Name', 'like', "%$city%");
         }
         if (array_key_exists('citizenship', $_GET) && $_GET['citizenship'] != '') {
             $citizenship = $_GET['citizenship'];
-            $query = $query->where('citizenship', 'like', "%$citizenship%");
+            $query = $query->where('Citizenship', 'like', "%$citizenship%");
         }
         if (array_key_exists('email', $_GET) && $_GET['email'] != '') {
             $email = $_GET['email'];
-            $query = $query->where('emailaddress', 'like', "%$email%");
+            $query = $query->where('EmailAddress', 'like', "%$email%");
         }
         
         // Serve the view

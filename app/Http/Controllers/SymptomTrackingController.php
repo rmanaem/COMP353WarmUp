@@ -16,7 +16,7 @@ class SymptomTrackingController extends Controller {
         $person = '';
         if (Helpers\LoginHelper::GetPermissionsLevel() == 2) {
             var_dump($_POST);
-            $person = DB::table('person')->where('medicareID', '=', $_POST['medicareID'] ?? '')->first();
+            $person = DB::table('Person')->where('MedicareID', '=', $_POST['medicareID'] ?? '')->first();
             if ($person == null) {
                 array_push($alerts, [
                     'type' => 'warning',
@@ -47,7 +47,7 @@ class SymptomTrackingController extends Controller {
         ];
 
         try {
-            DB::table('symptomhistory')->insert($tracker);
+            DB::table('SymptomHistory')->insert($tracker);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
             array_push($alerts, [

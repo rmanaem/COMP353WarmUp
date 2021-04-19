@@ -77,26 +77,26 @@ class PublicHealthWorkersController extends Controller {
     private function FetchView($alerts) {
 
         // Get the table
-        $query = DB::table('publichealthworker')
-            ->join('person', 'person.id', '=', 'publichealthworker.personID')
-            ->select('person.id as PersonID', 'person.FirstName', 'person.LastName', 'person.DateOfBirth', 'person.MedicareID', 'publichealthworker.id as publichealthworkerid');
+        $query = DB::table('PublicHealthWorker')
+            ->join('Person', 'Person.id', '=', 'PublicHealthWorker.PersonID')
+            ->select('Person.id as PersonID', 'Person.FirstName', 'Person.LastName', 'Person.DateOfBirth', 'Person.MedicareID', 'PublicHealthWorker.id as PublicHealthWorkerID');
 
         // Apply search queries
         if (array_key_exists('firstname', $_GET) && $_GET['firstname'] != '') {
             $firstname = $_GET['firstname'];
-            $query = $query->where('firstname', 'like', "%$firstname%");
+            $query = $query->where('FirstName', 'like', "%$firstname%");
         }
         if (array_key_exists('lastname', $_GET) && $_GET['lastname'] != '') {
             $lastname = $_GET['lastname'];
-            $query = $query->where('lastname', 'like', "%$lastname%");
+            $query = $query->where('LastName', 'like', "%$lastname%");
         }
         if (array_key_exists('dob', $_GET) && $_GET['dob'] != '') {
             $dob = $_GET['dob'];
-            $query = $query->where('dateofbirth', 'like', "%$dob%");
+            $query = $query->where('DateOfBirth', 'like', "%$dob%");
         }
         if (array_key_exists('medicare', $_GET) && $_GET['medicare'] != '') {
             $medicare = $_GET['medicare'];
-            $query = $query->where('medicareID', 'like', "%$medicare%");
+            $query = $query->where('MedicareID', 'like', "%$medicare%");
         }
         
         // Serve the view
@@ -131,7 +131,7 @@ class PublicHealthWorkersController extends Controller {
         }
 
         try {
-            DB::table('employmentcontract')->delete($employmentcontractid);
+            DB::table('EmploymentContract')->delete($employmentcontractid);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
             array_push($alerts, [
@@ -156,7 +156,7 @@ class PublicHealthWorkersController extends Controller {
         }
 
         try {
-            DB::table('employmentcontract')->insert([
+            DB::table('EmploymentContract')->insert([
                 'PublicHealthWorkerID' => $publichealthworkerid,
                 'PublicHealthCentreID' => $_POST['publichealthcentre'],
                 'StartDate' => $_POST['startdate'],
@@ -214,23 +214,23 @@ class PublicHealthWorkersController extends Controller {
     private function FetchContractView($publichealthworkerid, $alerts) {
 
         // Get the table
-        $query = DB::table('publichealthworker')
-            ->join('person', 'person.id', '=', 'publichealthworker.personID')
-            ->join('employmentcontract', 'publichealthworker.id', '=', 'employmentcontract.publichealthworkerID')
-            ->join('publichealthcentre', 'employmentcontract.publichealthcentreid', '=', 'publichealthcentre.id')
-            ->select('publichealthworker.id as publichealthworkerid', 'publichealthcentre.Name', 'employmentcontract.StartDate', 'employmentcontract.EndDate', 'employmentcontract.Schedule', 'employmentcontract.id as employmentcontractid', 'publichealthcentre.id as publichealthcentreid')
-            ->where('publichealthworker.id', '=', $publichealthworkerid);
+        $query = DB::table('PublicHealthWorker')
+            ->join('Person', 'Person.ID', '=', 'PublicHealthWorker.PersonID')
+            ->join('EmploymentContract', 'PublicHealthWorker.ID', '=', 'EmploymentContract.PublicHealthWorkerID')
+            ->join('PublicHealthCentre', 'EmploymentContract.PublicHealthCentreID', '=', 'PublicHealthCentre.ID')
+            ->select('PublicHealthWorker.ID as PublicHealthWorkerID', 'PublicHealthCentre.Name', 'EmploymentContract.StartDate', 'EmploymentContract.EndDate', 'EmploymentContract.Schedule', 'EmploymentContract.ID as EmploymentContractID', 'PublicHealthCentre.ID as PublicHealthCentreID')
+            ->where('PublicHealthWorker.ID', '=', $publichealthworkerid);
         
         //Get the public health worker
-        $person = DB::table('person')
-            ->join('publichealthworker', 'person.id', '=', 'publichealthworker.personID')
-            ->select('person.FirstName', 'person.LastName', 'person.id as PersonID', 'publichealthworker.id as publichealthworkerID')
-            ->where('publichealthworker.id', '=', $publichealthworkerid);
+        $person = DB::table('Person')
+            ->join('PublicHealthWorker', 'Person.ID', '=', 'PublicHealthWorker.PersonID')
+            ->select('Person.FirstName', 'Person.LastName', 'Person.ID as PersonID', 'PublicHealthWorker.ID as PublicHealthWorkerID')
+            ->where('PublicHealthWorker.ID', '=', $publichealthworkerid);
 
         // Apply search queries
-        if (array_key_exists('publichealthcentreID', $_GET) && $_GET['publichealthcentreID'] != '') {
+        if (array_key_exists('PublicHealthCentreID', $_GET) && $_GET['publichealthcentreID'] != '') {
             $publichealthcentreid = $_GET['publichealthcentreID'];
-            $query = $query->where('publichealthcentreID', 'like', "%$publichealthcentreid%");
+            $query = $query->where('PublicHealthCentreID', 'like', "%$publichealthcentreid%");
         }
         
         // Serve the view
