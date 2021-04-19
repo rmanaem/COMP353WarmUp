@@ -27,9 +27,29 @@
                 <td><input type="text" class="form-control form-control-sm" name="numberofhealthworkers" placeholder="Number of Health Workers" value="<?= $_GET["numberofhealthworkers"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="phonenumber" placeholder="Phone Number" value="<?= $_GET["phonenumber"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="website" placeholder="Website" value="<?= $_GET["website"] ?? '' ?>" /></td>
-                <td><input type="text" class="form-control form-control-sm" name="type" placeholder="Type" value="<?= $_GET["type"] ?? '' ?>" /></td>
-                <td><input type="text" class="form-control form-control-sm" name="drivethrough" placeholder="Drive Through" value="<?= $_GET["drivethrough"] ?? '' ?>" /></td>
-                <td><input type="text" class="form-control form-control-sm" name="appointmenttype" placeholder="Appointment Type" value="<?= $_GET["appointmenttype"] ?? '' ?>" /></td>
+                <td>
+                    <select class="form-control form-control-sm" name='type' value="<?= $_GET["type"] ?? '' ?>">
+                        <option value=''>Select</option>
+                        <option value='c'>Clinic</option>
+                        <option value='h'>Hospital</option>
+                        <option value='s'>Special</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control form-control-sm" name='drivethrough' value="<?= $_GET["drivethrough"] ?? '' ?>">
+                        <option value=''>Select</option>
+                        <option value='0'>No</option>
+                        <option value='1'>Yes</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control form-control-sm" name='appointmenttype' value="<?= $_GET["appointmenttype"] ?? '' ?>">
+                        <option value=''>Select</option>
+                        <option value='0'>Appointment only</option>
+                        <option value='1'>Walk-in</option>
+                        <option value='2'>Appointment and walk-in</option>
+                    </select>
+                </td>
                 <td colspan=2><button type="submit" class="btn btn-primary btn-sm w-100">Search</button></td>
             </tr>
         </form>
@@ -41,9 +61,26 @@
                 <td></td>
                 <td><input type="text" class="form-control form-control-sm" name="phonenumber" placeholder="Phone Number" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="website" placeholder="Website" /></td>
-                <td><input type="text" class="form-control form-control-sm" name="type" placeholder="Type" /></td>
-                <td><input type="text" class="form-control form-control-sm" name="drivethrough" placeholder="Drive Through" /></td>
-                <td><input type="text" class="form-control form-control-sm" name="appointmenttype" placeholder="Appointment Type" /></td>
+                <td>
+                    <select class="form-control form-control-sm" name='type' value="<?= $_GET["type"] ?? '' ?>">
+                        <option value='c'>Clinic</option>
+                        <option value='h'>Hospital</option>
+                        <option value='s'>Special</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control form-control-sm" name='drivethrough' value="<?= $_GET["drivethrough"] ?? '' ?>">
+                        <option value='0'>No</option>
+                        <option value='1'>Yes</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control form-control-sm" name='appointmenttype' value="<?= $_GET["appointmenttype"] ?? '' ?>">
+                        <option value='0'>Appointment only</option>
+                        <option value='1'>Walk-in</option>
+                        <option value='2'>Appointment and walk-in</option>
+                    </select>
+                </td>
                 <td colspan=2><button type="submit" class="btn btn-success btn-sm w-100">Add New</a></td>
             </tr>
         </form>
@@ -95,9 +132,56 @@
                     <td></td>
                     <td><input type="text" class="form-control form-control-sm" name="phonenumber" placeholder="Phone Number" value="<?= $publichealthcentre->PhoneNumber ?>" /></td>
                     <td><input type="text" class="form-control form-control-sm" name="website" placeholder="Website" value="<?= $publichealthcentre->Website ?>" /></td>
-                    <td><input type="text" class="form-control form-control-sm" name="type" placeholder="Type" value="<?= $publichealthcentre->Type ?>" /></td>
-                    <td><input type="text" class="form-control form-control-sm" name="drivethrough" placeholder="Drive Through" value="<?= $publichealthcentre->DriveThrough ?>" /></td>
-                    <td><input type="text" class="form-control form-control-sm" name="appointmenttype" placeholder="Appointment Type" value="<?= $publichealthcentre->AppointmentType ?>" /></td>
+                    <td>
+                        <select class="form-control form-control-sm" name='type' value="<?= $_GET["type"] ?? '' ?>">
+                            @if ($publichealthcentre->Type == 'c')
+                            <option value='c' selected=selected>Clinic</option>
+                            <option value='h'>Hospital</option>
+                            <option value='s'>Special</option>
+                            @endif
+                            @if ($publichealthcentre->Type == 'h')
+                            <option value='c'>Clinic</option>
+                            <option value='h' selected=selected>Hospital</option>
+                            <option value='s'>Special</option>
+                            @endif
+                            @if ($publichealthcentre->Type == 's')
+                            <option value='c'>Clinic</option>
+                            <option value='h'>Hospital</option>
+                            <option value='s' selected=selected>Special</option>
+                            @endif
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control form-control-sm" name='drivethrough' value="<?= $_GET["drivethrough"] ?? '' ?>">
+                            @if ($publichealthcentre->DriveThrough == 0)
+                            <option value='0' selected=selected>No</option>
+                            <option value='1'>Yes</option>
+                            @endif
+                            @if ($publichealthcentre->DriveThrough == 1)
+                            <option value='0'>No</option>
+                            <option value='1'selected=selected>Yes</option>
+                            @endif
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control form-control-sm" name='appointmenttype' value="<?= $_GET["appointmenttype"] ?? '' ?>">
+                            @if ($publichealthcentre->AppointmentType == 0)
+                            <option value='0' selected=selected>Appointment only</option>
+                            <option value='1'>Walk-in</option>
+                            <option value='2'>Appointment and walk-in</option>
+                            @endif
+                            @if ($publichealthcentre->AppointmentType == 1)
+                            <option value='0'>Appointment only</option>
+                            <option value='1'selected=selected>Walk-in</option>
+                            <option value='2'>Appointment and walk-in</option>
+                            @endif
+                            @if ($publichealthcentre->AppointmentType == 2)
+                            <option value='0'>Appointment only</option>
+                            <option value='1'>Walk-in</option>
+                            <option value='2' selected=selected>Appointment and walk-in</option> 
+                            @endif   
+                        </select>
+                    </td>
                     <td><button type="button" class="btn btn-warning btn-sm w-100" onclick="Cancel(<?= $publichealthcentre->ID ?>)">Cancel</button></td>
                     <td><button type="submit" class="btn btn-success btn-sm w-100">Save</button></td>
                 </tr>
