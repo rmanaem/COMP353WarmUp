@@ -20,9 +20,11 @@ Route::get('/data/facilities', function () {
     return view('/data/facilities');
 });
 
-Route::get('/data/groupzones', function () {
-    return view('/data/groupzones');
-});
+// Group zones
+Route::get('/data/groupzones/', [Controllers\GroupZonesController::class, 'index']);
+Route::get('/data/groupzones/delete/{id}', [Controllers\GroupZonesController::class, 'delete']);
+Route::post('/data/groupzones/edit', [Controllers\GroupZonesController::class, 'edit']);
+Route::post('/data/groupzones/new', [Controllers\GroupZonesController::class, 'new']);
 
 // Persons
 Route::get('/data/persons/', [Controllers\PersonsController::class, 'index']);
