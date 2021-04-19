@@ -16,9 +16,12 @@ use App\Http\Controllers;
 
 
 // CRUD API views
-Route::get('/data/facilities', function () {
-    return view('/data/facilities');
-});
+
+// Public health centres
+Route::get('/data/publichealthcentres/', [Controllers\PublicHealthCentresController::class, 'index']);
+Route::get('/data/publichealthcentres/delete/{id}', [Controllers\PublicHealthCentresController::class, 'delete']);
+Route::post('/data/publichealthcentres/edit', [Controllers\PublicHealthCentresController::class, 'edit']);
+Route::post('/data/publichealthcentres/new', [Controllers\PublicHealthCentresController::class, 'new']);
 
 Route::get('/data/groupzones', function () {
     return view('/data/groupzones');
