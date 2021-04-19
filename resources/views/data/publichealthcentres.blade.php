@@ -11,6 +11,7 @@
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Address</th>
+                <th scope="col">Number of Health Workers</th>
                 <th scope="col">Phone Number</th>
                 <th scope="col">Website</th>
                 <th scope="col">Type</th>
@@ -23,7 +24,8 @@
             <tr>
                 <td scope="row"><input type="text" class="form-control form-control-sm" name="name" placeholder="Name" value="<?= $_GET["name"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="address" placeholder="Address" value="<?= $_GET["address"] ?? '' ?>" /></td>
-                <td><input type="text" class="form-control form-control-sm" name="phone" placeholder="Phone Number" value="<?= $_GET["phonenumber"] ?? '' ?>" /></td>
+                <td><input type="text" class="form-control form-control-sm" name="numberofhealthworkers" placeholder="Number of Health Workers" value="<?= $_GET["numberofhealthworkers"] ?? '' ?>" /></td>
+                <td><input type="text" class="form-control form-control-sm" name="phonenumber" placeholder="Phone Number" value="<?= $_GET["phonenumber"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="website" placeholder="Website" value="<?= $_GET["website"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="type" placeholder="Type" value="<?= $_GET["type"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="drivethrough" placeholder="Drive Through" value="<?= $_GET["drivethrough"] ?? '' ?>" /></td>
@@ -35,6 +37,7 @@
             <tr id="publichealthcentre_<?= $publichealthcentre->ID ?>">
                 <td scope="row"><?= $publichealthcentre->Name ?></td>
                 <td><?= $publichealthcentre->Address ?></td>
+                <td><?= $publichealthcentre->NumberOfHealthWorkers ?? 0 ?></td>
                 <td><?= $publichealthcentre->PhoneNumber ?></td>
                 <td><?= $publichealthcentre->Website ?></td>
                 @if ($publichealthcentre->Type == 'c')
