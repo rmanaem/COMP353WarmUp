@@ -39,7 +39,7 @@
                     <td><?= $publichealthworker->LastName ?></td>
                     <td><?= $publichealthworker->DateOfBirth ?></td>
                     <td><?= $publichealthworker->MedicareID ?></td>
-                    <td><button class="btn btn-warning btn-sm w-100" onclick="Edit(<?= $publichealthworker->PersonID ?>)">Edit</button></td>
+                    <td><a class="btn btn-warning btn-sm w-100" href="/data/publichealthworkers/contract/<?= $publichealthworker->PersonID ?>">Edit</a></td>
                     <td>
                         <button id="delete_<?= $publichealthworker->PersonID ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $publichealthworker->PersonID ?>)">Delete</button>
                         <a id="confirm_<?= $publichealthworker->PersonID ?>" href="/data/publichealthworkers/delete/<?= $publichealthworker->PersonID ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>

@@ -36,6 +36,12 @@ Route::get('/data/publichealthworkers/delete/{id}', [Controllers\PublicHealthWor
 Route::post('/data/publichealthworkers/edit', [Controllers\PublicHealthWorkersController::class, 'edit']);
 Route::post('/data/publichealthworkers/new', [Controllers\PublicHealthWorkersController::class, 'new']);
 
+//Public Health Workers Contracts
+Route::get('/data/publichealthworkers/contract/{publichealthworkerid}', [Controllers\PublicHealthWorkersController::class, 'contractIndex']);
+Route::get('/data/publichealthworkers/contract/{publichealthworkerid}/delete/{employmentcontractid}', [Controllers\PublicHealthWorkersController::class, 'contractDelete']);
+Route::post('/data/publichealthworkers/contract/{publichealthworkerid}/edit/{employmentcontractid}', [Controllers\PublicHealthWorkersController::class, 'contractEdit']);
+Route::post('/data/publichealthworkers/contract/{publichealthworkerid}/new/{employmentcontractid}', [Controllers\PublicHealthWorkersController::class, 'contractNew']);
+
 Route::get('/data/regions', function () {
     return view('/data/regions');
 });

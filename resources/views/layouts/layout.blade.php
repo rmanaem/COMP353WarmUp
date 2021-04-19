@@ -53,6 +53,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/recommendations">Recommendations</a>
                     </li>
+                    @if($permissions != 0)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Data
@@ -67,12 +68,17 @@
                             <a class="dropdown-item" href="/data/groupzones">Group Zones</a>
                         </div>
                     </li>
+                    @endif
+                    @if($permissions != 0)
                     <li class="nav-item">
                         <a class="nav-link" href="/messages">Messages</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/symptomTracking">Symptom Tracking</a>
-                    </li>
+                    @endif
+                    @if($permissions != 0)
+                        <li class="nav-item">
+                            <a class="nav-link" href="/symptomTracking">Symptom Tracking</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </nav>
