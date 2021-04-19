@@ -199,8 +199,3 @@ CREATE TABLE Recommendation(
 	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Text VARCHAR(600)
 );
-    
-    
-    
-    
-    

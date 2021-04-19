@@ -18,4 +18,4 @@ ON Region
 FOR EACH ROW
 BEGIN
 	INSERT INTO RegionAlertHistory(RegionID, AlertLevelID) VALUES (NEW.ID, 1);
-END //
+END // 
