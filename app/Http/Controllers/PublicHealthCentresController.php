@@ -29,7 +29,13 @@ class PublicHealthCentresController extends Controller
             DB::table('publichealthcentre')
                 ->where('ID', '=', $_POST['id'])
                 ->update([
-                'Text' => $_POST['text']
+                'Name' => $_POST['name'],
+                'Address' => $_POST['address'],
+                'PhoneNumber' => $_POST['phonenumber'],
+                'Website' => $_POST['website'],
+                'Type' => $_POST['type'],
+                'DriveThrough' => $_POST['drivethrough'],
+                'AppointmentType' => $_POST['appointmenttype']
             ]);
             array_push($alerts, [
                 'type' => 'success',
@@ -87,7 +93,13 @@ class PublicHealthCentresController extends Controller
         // Create new publichealthcentre
         try {
             DB::table('publichealthcentre')->insert([
-                'Text' => $_POST['text']
+                'Name' => $_POST['name'],
+                'Address' => $_POST['address'],
+                'PhoneNumber' => $_POST['phonenumber'],
+                'Website' => $_POST['website'],
+                'Type' => $_POST['type'],
+                'DriveThrough' => $_POST['drivethrough'],
+                'AppointmentType' => $_POST['appointmenttype']
             ]);
             array_push($alerts, [
                 'type' => 'success',
@@ -110,8 +122,52 @@ class PublicHealthCentresController extends Controller
     private function FetchView($alerts) {
 
         // Get the table
-        $query = DB::table('publichealthcentre');
+        $contracts = DB::table('employmentcontract')
+        ->whereNull('EndDate');
+
+        $counts = DB::table('publichealthcentre')
+                ->select('publichealthcentre.ID', DB::raw('count(*) as total'))
+                ->joinsub($contracts, 'employmentcontract', 'employmentcontract.publichealthcentreid', '=', 'publichealthcentre.id')
+                ->groupBy('publichealthcentre.ID');
+
+        $query = DB::table('publichealthcentre')
+                ->leftJoinSub($counts, 'counts', 'publichealthcentre.ID', '=', 'counts.ID')
+                ->select('publichealthcentre.*', 'counts.total as NumberOfHealthWorkers');
         
+        // Apply search queries
+        if (array_key_exists('name', $_GET) && $_GET['name'] != '') {
+            $name = $_GET['name'];
+            $query = $query->where('name', 'like', "%$name%");
+        }
+        if (array_key_exists('address', $_GET) && $_GET['address'] != '') {
+            $address = $_GET['address'];
+            $query = $query->where('address', 'like', "%$address%");
+        }
+        if (array_key_exists('numberofhealthworkers', $_GET) && $_GET['numberofhealthworkers'] != '') {
+            $numberofhealthworkers = $_GET['numberofhealthworkers'];
+            $query = $query->having('numberofhealthworkers', 'like', "%$numberofhealthworkers%");
+        }
+        if (array_key_exists('phonenumber', $_GET) && $_GET['phonenumber'] != '') {
+            $phonenumber = $_GET['phonenumber'];
+            $query = $query->where('phonenumber', 'like', "%$phonenumber%");
+        }
+        if (array_key_exists('website', $_GET) && $_GET['website'] != '') {
+            $website = $_GET['website'];
+            $query = $query->where('website', 'like', "%$website%");
+        }
+        if (array_key_exists('type', $_GET) && $_GET['type'] != '') {
+            $type = $_GET['type'];
+            $query = $query->where('type', 'like', "%$type%");
+        }
+        if (array_key_exists('drivethrough', $_GET) && $_GET['drivethrough'] != '') {
+            $drivethrough = $_GET['drivethrough'];
+            $query = $query->where('drivethrough', 'like', "%$drivethrough%");
+        }
+        if (array_key_exists('appointmenttype', $_GET) && $_GET['appointmenttype'] != '') {
+            $appointmenttype = $_GET['appointmenttype'];
+            $query = $query->where('appointmenttype', 'like', "%$appointmenttype%");
+        }
+
         // Serve the view
         $permissions = Helpers\LoginHelper::GetPermissionsLevel();
         $page = '';
