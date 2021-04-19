@@ -105,7 +105,7 @@ class RegionsController extends Controller {
 
     private function FetchView($alerts) {
         $query = DB::table('Region')
-                        ->join('RegionAlertHistory', 'Region.id', '=', 'RegionAlertHistory.RegionID')
+                        ->join('RegionAlertHistory', 'Region.ID', '=', 'RegionAlertHistory.RegionID')
                         ->whereNull('RegionAlertHistory.EndDate')
                         ->select('Region.*', 'RegionAlertHistory.AlertLevelID')
                         ->orderBy('ID');

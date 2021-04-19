@@ -78,8 +78,8 @@ class PublicHealthWorkersController extends Controller {
 
         // Get the table
         $query = DB::table('PublicHealthWorker')
-            ->join('Person', 'Person.id', '=', 'PublicHealthWorker.PersonID')
-            ->select('Person.id as PersonID', 'Person.FirstName', 'Person.LastName', 'Person.DateOfBirth', 'Person.MedicareID', 'PublicHealthWorker.id as PublicHealthWorkerID');
+            ->join('Person', 'Person.ID', '=', 'PublicHealthWorker.PersonID')
+            ->select('Person.ID as PersonID', 'Person.FirstName', 'Person.LastName', 'Person.DateOfBirth', 'Person.MedicareID', 'PublicHealthWorker.ID as PublicHealthWorkerID');
 
         // Apply search queries
         if (array_key_exists('firstname', $_GET) && $_GET['firstname'] != '') {

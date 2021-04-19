@@ -15,10 +15,10 @@ class MessagesController extends Controller {
         $alerts = [];
 
         DB::table('Message')
-            ->where('id', '=', $id)
+            ->where('ID', '=', $id)
             ->update(['MessageRead' => 1]);
         $message = DB::table('Message')
-            ->join('MessageTemplate', 'MessageTemplate.id', '=', 'Message.templateid')
+            ->join('MessageTemplate', 'MessageTemplate.ID', '=', 'Message.templateid')
             ->select('Message.ID as ID', 'Message.DateTime as DateTime', 'MessageTemplate.Subject as Subject', 'Message.Text as Text')
             ->where('Message.ID', '=', $id)
             ->first();
@@ -48,9 +48,9 @@ class MessagesController extends Controller {
         $account = Helpers\LoginHelper::GetAccount();
 
         $messages = DB::table('Message')
-            ->join('MessageTemplate', 'MessageTemplate.id', '=', 'message.templateid')
+            ->join('MessageTemplate', 'MessageTemplate.ID', '=', 'message.templateid')
             ->where('PersonID', '=', $account->ID)
-            ->select('Message.id as ID', 'Message.PersonID as PersonID', 'Message.MessageRead as Read', 'Message.DateTime as DateTime', 'MessageTemplate.Subject as Subject')
+            ->select('Message.ID as ID', 'Message.PersonID as PersonID', 'Message.MessageRead as Read', 'Message.DateTime as DateTime', 'MessageTemplate.Subject as Subject')
             ->orderByDesc('Message.datetime')
             ->get();
         

@@ -29,9 +29,9 @@ class PersonsController extends Controller {
                 'text' => "Postal Code, City, and Province are required!"
             ]);
         } else {
-            $postalcode = DB::table('postalcode')->where('code', '=', $_POST['postal'])->first();
-            $region = DB::table('region')->where('province', '=', $_POST['province'])
-                ->orderBy('id')
+            $postalcode = DB::table('PostalCode')->where('Code', '=', $_POST['postal'])->first();
+            $region = DB::table('Region')->where('Province', '=', $_POST['province'])
+                ->orderBy('ID')
                 ->first();
 
             if ($region == null) {
@@ -41,16 +41,16 @@ class PersonsController extends Controller {
                     'text' => "The province $prov does not exist!"
                 ]);
             } else {
-                $city = DB::table('city')
-                    ->join('region', 'region.id', '=', 'city.regionID')
-                    ->where('city.name', '=', $_POST['city'])
-                    ->where('region.province', '=', $_POST['province'])
-                    ->select('city.id as ID', 'city.name as Name', 'region.ID as RegionID')
+                $city = DB::table('City')
+                    ->join('Region', 'Region.ID', '=', 'City.RegionID')
+                    ->where('City.Name', '=', $_POST['city'])
+                    ->where('Region.Province', '=', $_POST['province'])
+                    ->select('City.ID as ID', 'City.name as Name', 'Region.ID as RegionID')
                     ->first();
 
                 
                 if (($city == null && $postalcode != null) || ($postalcode != null && $city != null && $postalcode->CityID != $city->ID)) {
-                    $actualCity = DB::table('city')->find($postalcode->CityID);
+                    $actualCity = DB::table('City')->find($postalcode->CityID);
                     array_push($alerts, [
                         'type' => 'danger',
                         'text' => "The postal code $postalcode->Code is already associated with $actualCity->Name!"
@@ -59,11 +59,11 @@ class PersonsController extends Controller {
                     // Create city and postal code if they do not exist
                     try {
                         if ($city == null) {
-                            DB::table('city')->insert([
+                            DB::table('City')->insert([
                                 'Name' => $_POST['city'],
                                 'RegionID' => $region->ID
                             ]);
-                            $city = DB::table('city')->where('name', '=', $_POST['city'])->first();
+                            $city = DB::table('City')->where('Name', '=', $_POST['City'])->first();
                             array_push($alerts, [
                                 'type' => 'success',
                                 'text' => "New city $city->Name created"
@@ -79,11 +79,11 @@ class PersonsController extends Controller {
                     }
                     try {
                         if ($postalcode == null) {
-                            DB::table('postalcode')->insert([
+                            DB::table('PostalCode')->insert([
                                 'Code' => $_POST['postal'],
                                 'CityID' => $city->ID
                             ]);
-                            $postalcode = DB::table('postalcode')->where('code', '=', $_POST['postal'])->first();
+                            $postalcode = DB::table('PostalCode')->where('Code', '=', $_POST['postal'])->first();
                             array_push($alerts, [
                                 'type' => 'success',
                                 'text' => "New postal code $postalcode->Code created"
@@ -100,7 +100,7 @@ class PersonsController extends Controller {
 
                     // Create new person
                     try {
-                        DB::table('person')->insert([
+                        DB::table('Person')->insert([
                             'FirstName' => $_POST['firstname'],
                             'LastName' => $_POST['lastname'],
                             'DateOfBirth' => $_POST['dob'],
@@ -150,9 +150,9 @@ class PersonsController extends Controller {
                 'text' => "Postal Code, City, and Province are required!"
             ]);
         } else {
-            $postalcode = DB::table('postalcode')->where('code', '=', $_POST['postal'])->first();
-            $region = DB::table('region')->where('province', '=', $_POST['province'])
-                ->orderBy('id')
+            $postalcode = DB::table('PostalCode')->where('Code', '=', $_POST['postal'])->first();
+            $region = DB::table('Region')->where('Province', '=', $_POST['province'])
+                ->orderBy('ID')
                 ->first();
 
             if ($region == null) {
@@ -162,13 +162,12 @@ class PersonsController extends Controller {
                     'text' => "The province $prov does not exist!"
                 ]);
             } else {
-                $city = DB::table('city')
-                    ->join('region', 'region.id', '=', 'city.regionID')
-                    ->where('city.name', '=', $_POST['city'])
-                    ->where('region.province', '=', $_POST['province'])
-                    ->select('city.id as ID', 'city.name as Name', 'region.ID as RegionID')
+                $city = DB::table('City')
+                    ->join('Region', 'Region.ID', '=', 'City.RegionID')
+                    ->where('City.Name', '=', $_POST['city'])
+                    ->where('Region.Province', '=', $_POST['province'])
+                    ->select('City.ID as ID', 'City.name as Name', 'Region.ID as RegionID')
                     ->first();
-
                 
                 if (($city == null && $postalcode != null) || ($postalcode != null && $city != null && $postalcode->CityID != $city->ID)) {
                     $actualCity = DB::table('city')->find($postalcode->CityID);
@@ -284,7 +283,7 @@ class PersonsController extends Controller {
 
         // Get the table
         $query = DB::table('Person')
-            ->leftjoin('PostalCode', 'PostalCode.id', '=', 'Person.PostalCodeID')
+            ->leftjoin('PostalCode', 'PostalCode.ID', '=', 'Person.PostalCodeID')
             ->leftjoin('City', 'City.ID', '=', 'PostalCode.CityID')
             ->leftjoin('Region', 'Region.ID', '=', 'City.RegionID')
             ->select('Person.ID as PersonID', 'Person.*', 'PostalCode.Code as PostalCode', 'City.Name as City', 'Region.Province as Province');
