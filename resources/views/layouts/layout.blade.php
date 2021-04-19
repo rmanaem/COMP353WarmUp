@@ -59,7 +59,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/data/persons">Persons</a>
-                            <a class="dropdown-item" href="/data/publichealthworkers">Public Health Workers</a>
+                            @if($permissions == 2)
+                                <a class="dropdown-item" href="/data/publichealthworkers">Public Health Workers</a>
+                            @endif
                             <a class="dropdown-item" href="/data/publichealthcentres">Public Health Centres</a>
                             <a class="dropdown-item" href="/data/regions">Regions</a>
                             <a class="dropdown-item" href="/data/groupzones">Group Zones</a>

@@ -30,9 +30,11 @@ Route::get('/data/persons/delete/{id}', [Controllers\PersonsController::class, '
 Route::post('/data/persons/edit', [Controllers\PersonsController::class, 'edit']);
 Route::post('/data/persons/new', [Controllers\PersonsController::class, 'new']);
 
-Route::get('/data/publichealthworkers', function () {
-    return view('/data/publichealthworkers');
-});
+// Public Health Workers
+Route::get('/data/publichealthworkers/', [Controllers\PublicHealthWorkersController::class, 'index']);
+Route::get('/data/publichealthworkers/delete/{id}', [Controllers\PublicHealthWorkersController::class, 'delete']);
+Route::post('/data/publichealthworkers/edit', [Controllers\PublicHealthWorkersController::class, 'edit']);
+Route::post('/data/publichealthworkers/new', [Controllers\PublicHealthWorkersController::class, 'new']);
 
 // Regions
 Route::get('/data/regions/', [Controllers\RegionsController::class, 'index']);
