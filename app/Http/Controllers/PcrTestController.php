@@ -16,15 +16,15 @@ class PcrTestController extends Controller {
     public function submit() {
         $alerts = [];
         $account = Helpers\LoginHelper::GetAccount();
-        $person = DB::table('person')->where('medicareID', '=', $_POST['medicareID'])->first();
-        $contract = DB::table('employmentcontract')
-            ->where('publichealthworkerID', '=', $account->WorkerID)
-            ->whereNull('endDate')
+        $person = DB::table('Person')->where('MedicareID', '=', $_POST['medicareID'])->first();
+        $contract = DB::table('EmploymentContract')
+            ->where('PublicHealthWorkerID', '=', $account->WorkerID)
+            ->whereNull('EndDate')
             ->first();
         if ($contract == null) {
-            $contract = DB::table('employmentcontract')
-                ->where('publichealthworkerID', '=', $account->WorkerID)
-                ->orderByDesc('endDate')
+            $contract = DB::table('EmploymentContract')
+                ->where('PublicHealthWorkerID', '=', $account->WorkerID)
+                ->orderByDesc('EndDate')
                 ->first();
         }
 
@@ -36,7 +36,7 @@ class PcrTestController extends Controller {
         } else {
             $success = false;
             try {
-                DB::table('pcrtest')->insert([
+                DB::table('PCRTest')->insert([
                     'PersonID' => $person->ID,
                     'DateOfTest' => $_POST['date'],
                     'PublicHealthCentreID' => $contract->PublicHealthCentreID,
@@ -58,7 +58,7 @@ class PcrTestController extends Controller {
             }
             // Send messages to the patient and, if necessary, their group zone
             if ($success) {
-                $centre = DB::table('publichealthcentre')->find($contract->PublicHealthCentreID);
+                $centre = DB::table('PublicHealthCentre')->find($contract->PublicHealthCentreID);
                 if ($_POST['result'] == '1') {
                     // Alert that the test came back positive
                     Helpers\MessageHelper::CreateMessage($person->ID, 1, [
@@ -70,15 +70,15 @@ class PcrTestController extends Controller {
                     Helpers\MessageHelper::CreateMessage($person->ID, 4, []);
 
                     // Alert all members of the groupzone
-                    $zones = DB::table('groupzonemembership')
+                    $zones = DB::table('GroupZoneMembership')
                         ->where('PersonID', '=', $person->ID)
                         ->select('GroupZoneID');
 
-                    $people = DB::table('person')
-                        ->join('groupzonemembership', 'groupzonemembership.PersonID', '=', 'person.ID')
-                        ->joinSub($zones, 'zones', 'groupzonemembership.GroupZoneID', '=', 'zones.GroupZoneID')
-                        ->where('person.ID', '<>', $person->ID)
-                        ->select('person.ID')
+                    $people = DB::table('Person')
+                        ->join('GroupZoneMembership', 'GroupZoneMembership.PersonID', '=', 'Person.ID')
+                        ->joinSub($zones, 'zones', 'GroupZoneMembership.GroupZoneID', '=', 'zones.GroupZoneID')
+                        ->where('Person.ID', '<>', $person->ID)
+                        ->select('Person.ID')
                         ->distinct()
                         ->get();
 

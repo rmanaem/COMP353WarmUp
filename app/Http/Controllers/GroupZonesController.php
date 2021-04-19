@@ -26,7 +26,7 @@ class GroupZonesController extends Controller
 
         // Update the group zone
         try {
-            DB::table('groupzone')
+            DB::table('GroupZone')
                 ->where('ID', '=', $_POST['id'])
                 ->update([
                 'Name' => $_POST['name']
@@ -60,7 +60,7 @@ class GroupZonesController extends Controller
         }
 
         try {
-            DB::table('groupzone')->delete($id);
+            DB::table('GroupZone')->delete($id);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
             array_push($alerts, [
@@ -86,7 +86,7 @@ class GroupZonesController extends Controller
 
         // Create new group zone
         try {
-            DB::table('groupzone')->insert([
+            DB::table('GroupZone')->insert([
                 'Name' => $_POST['name']
             ]);
             array_push($alerts, [

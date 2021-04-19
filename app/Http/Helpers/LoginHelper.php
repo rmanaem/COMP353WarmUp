@@ -9,11 +9,11 @@ class LoginHelper {
         $user = $_COOKIE['user'] ?? '';
         $pass = $_COOKIE['pass'] ?? '';
 
-        return DB::table('person')
-                    ->leftJoin('publichealthworker', 'publichealthworker.personID', '=', 'person.id')
-                    ->where('person.medicareID', '=', $user)
-                    ->where('person.dateofbirth', '=', $pass)
-                    ->select('person.id as ID', 'publichealthworker.id as WorkerID', 'FirstName', 'LastName', 'MedicareID')
+        return DB::table('Person')
+                    ->leftJoin('PublicHealthWorker', 'PublicHealthWorker.personID', '=', 'Person.id')
+                    ->where('Person.medicareID', '=', $user)
+                    ->where('Person.dateofbirth', '=', $pass)
+                    ->select('Person.id as ID', 'PublicHealthWorker.id as WorkerID', 'FirstName', 'LastName', 'MedicareID')
                     ->first();
     }
 
@@ -21,11 +21,11 @@ class LoginHelper {
         $user = $_COOKIE['user'] ?? '';
         $pass = $_COOKIE['pass'] ?? '';
 
-        $account = DB::table('person')
-                    ->leftJoin('publichealthworker', 'publichealthworker.personID', '=', 'person.id')
-                    ->where('person.medicareID', '=', $user)
-                    ->where('person.dateofbirth', '=', $pass)
-                    ->select('person.id as PersonID', 'publichealthworker.id as WorkerID', 'FirstName', 'LastName')
+        $account = DB::table('Person')
+                    ->leftJoin('PublicHealthWorker', 'PublicHealthWorker.personID', '=', 'Person.id')
+                    ->where('Person.medicareID', '=', $user)
+                    ->where('Person.dateofbirth', '=', $pass)
+                    ->select('Person.id as PersonID', 'PublicHealthWorker.id as WorkerID', 'FirstName', 'LastName')
                     ->first();
 
         $permissions = 0;

@@ -8,7 +8,7 @@ use App\Http\Helpers;
 class MessageHelper {
     public static function HasMessages() {
         $account = Helpers\LoginHelper::GetAccount();
-        return DB::table('message')
+        return DB::table('Message')
             ->where('PersonID', '=', $account->ID)
             ->where('MessageRead', '=', 0)
             ->exists();
@@ -33,13 +33,13 @@ class MessageHelper {
                 break;
         }
 
-        return DB::table('message')->insert($message);
+        return DB::table('Message')->insert($message);
     }
 
     private static function CreateMessageTemplateTestPositive($personID, $data) {
-        $person = DB::table('person')->find($personID);
-        $template = DB::table('messagetemplate')->find(1);
-        $recommendations = DB::table('recommendation')->get();
+        $person = DB::table('Person')->find($personID);
+        $template = DB::table('MessageTemplate')->find(1);
+        $recommendations = DB::table('Recommendation')->get();
 
         $recommendString = '<ul>';
         foreach ($recommendations as $recommendation) {
@@ -64,8 +64,8 @@ class MessageHelper {
     }
 
     private static function CreateMessageTemplateTestNegative($personID, $data) {
-        $person = DB::table('person')->find($personID);
-        $template = DB::table('messagetemplate')->find(2);
+        $person = DB::table('Person')->find($personID);
+        $template = DB::table('MessageTemplate')->find(2);
 
         $text = $template->Template;
         $text = str_replace('{PersonName}', $person->FirstName . ' ' . $person->LastName, $text);
@@ -83,8 +83,8 @@ class MessageHelper {
     }
 
     private static function CreateMessageTemplateGroupZoneWarning($personID, $data) {
-        $person = DB::table('person')->find($personID);
-        $template = DB::table('messagetemplate')->find(3);
+        $person = DB::table('Person')->find($personID);
+        $template = DB::table('MessageTemplate')->find(3);
 
         $text = $template->Template;
         $text = str_replace('{PersonName}', $person->FirstName . ' ' . $person->LastName, $text);
@@ -99,9 +99,9 @@ class MessageHelper {
     }
 
     private static function CreateMessageTemplateReportDue($personID, $data) {
-        $person = DB::table('person')->find($personID);
-        $template = DB::table('messagetemplate')->find(4);
-        $recommendations = DB::table('recommendation')->get();
+        $person = DB::table('Person')->find($personID);
+        $template = DB::table('MessageTemplate')->find(4);
+        $recommendations = DB::table('Recommendation')->get();
 
         $recommendString = '<ul>';
         foreach ($recommendations as $recommendation) {
@@ -124,9 +124,9 @@ class MessageHelper {
     }
 
     private static function CreateMessageTemplateAlertLevelChange($personID, $data) {
-        $person = DB::table('person')->find($personID);
-        $template = DB::table('messagetemplate')->find(5);
-        $alert = DB::table('alertlevel')->find($data['AlertLevelID']);
+        $person = DB::table('Person')->find($personID);
+        $template = DB::table('MessageTemplate')->find(5);
+        $alert = DB::table('AlertLevel')->find($data['AlertLevelID']);
 
         $text = $template->Template;
         $text = str_replace('{PersonName}', $person->FirstName . ' ' . $person->LastName, $text);

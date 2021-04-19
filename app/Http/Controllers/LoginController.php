@@ -16,7 +16,7 @@ class LoginController extends Controller {
         $user = $_POST['user'] ?? '';
         $pass = $_POST['pass'] ?? '';
 
-        $accountExists = DB::table('person')
+        $accountExists = DB::table('Person')
             ->where('MedicareID', '=', $user)
             ->where('DateOfBirth', '=', $pass)
             ->exists();

@@ -14,13 +14,13 @@ class MessagesController extends Controller {
     public function view($id) {
         $alerts = [];
 
-        DB::table('message')
+        DB::table('Message')
             ->where('id', '=', $id)
-            ->update(['messageread' => 1]);
-        $message = DB::table('message')
-            ->join('messagetemplate', 'messagetemplate.id', '=', 'message.templateid')
-            ->select('message.id as ID', 'message.datetime as DateTime', 'messageTemplate.subject as Subject', 'message.text as Text')
-            ->where('message.ID', '=', $id)
+            ->update(['MessageRead' => 1]);
+        $message = DB::table('Message')
+            ->join('MessageTemplate', 'MessageTemplate.id', '=', 'Message.templateid')
+            ->select('Message.ID as ID', 'Message.DateTime as DateTime', 'MessageTemplate.Subject as Subject', 'Message.Text as Text')
+            ->where('Message.ID', '=', $id)
             ->first();
         
         return view ('/messageDetails', [
@@ -32,7 +32,7 @@ class MessagesController extends Controller {
     public function delete($id) {
         $alerts = [];
         try {
-            DB::table('message')->delete($id);
+            DB::table('Message')->delete($id);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
             array_push($alerts, [
@@ -47,11 +47,11 @@ class MessagesController extends Controller {
     private function FetchData($alerts) {
         $account = Helpers\LoginHelper::GetAccount();
 
-        $messages = DB::table('message')
-            ->join('messagetemplate', 'messagetemplate.id', '=', 'message.templateid')
+        $messages = DB::table('Message')
+            ->join('MessageTemplate', 'MessageTemplate.id', '=', 'message.templateid')
             ->where('PersonID', '=', $account->ID)
-            ->select('message.id as ID', 'message.personID as PersonID', 'message.messageread as Read', 'message.datetime as DateTime', 'messageTemplate.subject as Subject')
-            ->orderByDesc('message.datetime')
+            ->select('Message.id as ID', 'Message.PersonID as PersonID', 'Message.MessageRead as Read', 'Message.DateTime as DateTime', 'MessageTemplate.Subject as Subject')
+            ->orderByDesc('Message.datetime')
             ->get();
         
         return view ('/messages', [
