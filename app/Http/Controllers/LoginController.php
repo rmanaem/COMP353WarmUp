@@ -25,7 +25,7 @@ class LoginController extends Controller {
             setcookie('user', $user);
             setcookie('pass', $pass);
 
-            header("Location: /");
+            header("Location: /COMP353WarmUp/public/");
             exit;
         } else {
             array_push($alerts, [
@@ -43,7 +43,7 @@ class LoginController extends Controller {
         setcookie('user', '', time() - 100);
         setcookie('pass', '', time() - 100);
 
-        header("Location: /");
+        header("Location: /COMP353WarmUp/public/");
         exit;
     }
 }
