@@ -109,7 +109,7 @@ class GroupZonesController extends Controller
     private function FetchView($alerts) {
 
         // Get the table
-        $query = DB::table('groupzone');
+        $query = DB::table('GroupZone');
         
         // Apply search queries
         if (array_key_exists('name', $_GET) && $_GET['name'] != '') {

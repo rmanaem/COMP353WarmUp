@@ -64,7 +64,7 @@ class SymptomTrackingController extends Controller {
     }
 
     private function FetchView($alerts) {
-        return view ('/symptomtracking', [
+        return view ('/symptomTracking', [
             'permissions' => Helpers\LoginHelper::GetPermissionsLevel(),
             'medicare' => Helpers\LoginHelper::GetAccount()->MedicareID,
             'alerts' => $alerts

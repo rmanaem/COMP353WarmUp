@@ -48,7 +48,7 @@ class MessagesController extends Controller {
         $account = Helpers\LoginHelper::GetAccount();
 
         $messages = DB::table('Message')
-            ->join('MessageTemplate', 'MessageTemplate.ID', '=', 'message.TemplateID')
+            ->join('MessageTemplate', 'MessageTemplate.ID', '=', 'Message.TemplateID')
             ->where('PersonID', '=', $account->ID)
             ->select('Message.ID as ID', 'Message.PersonID as PersonID', 'Message.MessageRead as Read', 'Message.DateTime as DateTime', 'MessageTemplate.Subject as Subject')
             ->orderByDesc('Message.DateTime')
