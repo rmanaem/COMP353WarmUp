@@ -34,28 +34,28 @@
                 </tr>
             </form>
             <?php foreach($publichealthworkers as $publichealthworker) : ?>
-                <tr id="publichealthworker_<?= $publichealthworker->publichealthworkerid ?>">
+                <tr id="publichealthworker_<?= $publichealthworker->PublicHealthWorkerID ?>">
                     <td scope="row"><?= $publichealthworker->FirstName ?></td>
                     <td><?= $publichealthworker->LastName ?></td>
                     <td><?= $publichealthworker->DateOfBirth ?></td>
                     <td><?= $publichealthworker->MedicareID ?></td>
-                    <td><a class="btn btn-warning btn-sm w-100" href="data/publichealthworkers/contract/<?= $publichealthworker->publichealthworkerid ?>">Edit</a></td>
+                    <td><a class="btn btn-warning btn-sm w-100" href="data/publichealthworkers/contract/<?= $publichealthworker->PublicHealthWorkerID ?>">Edit</a></td>
                     <td>
-                        <button id="delete_<?= $publichealthworker->publichealthworkerid ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $publichealthworker->publichealthworkerid ?>)">Delete</button>
-                        <a id="confirm_<?= $publichealthworker->publichealthworkerid ?>" href="data/publichealthworkers/delete/<?= $publichealthworker->publichealthworkerid ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
+                        <button id="delete_<?= $publichealthworker->PublicHealthWorkerID ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $publichealthworker->PublicHealthWorkerID ?>)">Delete</button>
+                        <a id="confirm_<?= $publichealthworker->PublicHealthWorkerID ?>" href="data/publichealthworkers/delete/<?= $publichealthworker->PublicHealthWorkerID ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
                     </td>
                 </tr>
                 <form action="data/publichealthworkers/edit" method="POST">
                 @csrf
-                    <tr id="editing_<?= $publichealthworker->publichealthworkerid ?>" style="display:none">
+                    <tr id="editing_<?= $publichealthworker->PublicHealthWorkerID ?>" style="display:none">
                         <td scope="row">
-                            <input type="hidden" name="id" value="<?= $publichealthworker->publichealthworkerid ?>" />
+                            <input type="hidden" name="id" value="<?= $publichealthworker->PublicHealthWorkerID ?>" />
                             <input type="text" class="form-control form-control-sm" name="firstname" placeholder="First name" value="<?= $publichealthworker->FirstName ?>" />
                         </td>
                         <td><input type="text" class="form-control form-control-sm" name="lastname" placeholder="Last name" value="<?= $publichealthworker->LastName ?>" /></td>
                         <td><input type="text" class="form-control form-control-sm" name="dob" placeholder="Date of Birth" value="<?= $publichealthworker->DateOfBirth ?>" /></td>
                         <td><input type="text" class="form-control form-control-sm" name="medicare" placeholder="Medicare ID" value="<?= $publichealthworker->MedicareID ?>" /></td>
-                        <td><button type="button" class="btn btn-warning btn-sm w-100" onclick="Cancel(<?= $publichealthworker->publichealthworkerid ?>)">Cancel</button></td>
+                        <td><button type="button" class="btn btn-warning btn-sm w-100" onclick="Cancel(<?= $publichealthworker->PublicHealthWorkerID ?>)">Cancel</button></td>
                         <td><button type="submit" class="btn btn-success btn-sm w-100">Save</a></td>
                     </tr>
                 </form>
