@@ -13,9 +13,9 @@
                         <h4><span style="color:red">&#33;</span></h4>
                     <?php endif; ?>
                 </td>
-                <td><a href="/messages/view/<?= $message->ID ?>"><?= $message->Subject ?></a></td>
+                <td><a href="messages/view/<?= $message->ID ?>"><?= $message->Subject ?></a></td>
                 <td><?= date_format(date_create($message->DateTime), 'Y-m-d') ?></td>
-                <td><a href="/messages/delete/<?= $message->ID ?>" class="btn btn-sm btn-danger">Delete</a></td>
+                <td><a href="messages/delete/<?= $message->ID ?>" class="btn btn-sm btn-danger">Delete</a></td>
             </tr>
         <?php endforeach; ?>
     </table>
