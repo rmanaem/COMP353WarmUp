@@ -51,12 +51,12 @@ form, .row {
     text-transform: uppercase;
 }
 
+
 .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 10%;
-    padding-top: 1%;
+    display: block;
 }
 
 .button {

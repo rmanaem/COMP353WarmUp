@@ -32,7 +32,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
@@ -89,19 +88,6 @@
         <?php endforeach; ?>
 
         @yield('content')
-
-        <footer class="bg-dark text-center text-lg-start footer">
-            <div class="row">
-                <div class="col">
-                    <h6>Created at Concordia University Department of Engineering and Computer Science | COMP 353 Databases - Winter 2021</h6>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    © 2021 Copyright:
-                    <a class="text-light" href="https://github.com/Dwarf1er/COMP353WarmUp/">Team wdc353_4</a>
-                </div>
-            </div>
-        </footer>
+        
     </body>
 </html>
