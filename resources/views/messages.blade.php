@@ -10,7 +10,7 @@
             <tr>
                 <td scope="row">
                     <?php if($message->Read == 0) : ?>
-                        <h4>!</h4>
+                        <h4><span style="color:red">&#33;</span></h4>
                     <?php endif; ?>
                 </td>
                 <td><a href="/messages/view/<?= $message->ID ?>"><?= $message->Subject ?></a></td>

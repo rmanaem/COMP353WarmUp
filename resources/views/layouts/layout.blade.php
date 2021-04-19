@@ -2,6 +2,7 @@
     use App\Http\Helpers;
     $account = Helpers\LoginHelper::GetAccount();
     $permissions = Helpers\LoginHelper::GetPermissionsLevel();
+    $hasMessages = Helpers\MessageHelper::HasMessages();
 ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -66,7 +67,10 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/messages">Messages</a>
+                        <a class="nav-link" href="/messages">Messages
+                        <?php if($hasMessages) : ?>
+                            <span style="color:red">&#33;</span>
+                        <?php endif; ?></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/symptomTracking">Symptom Tracking</a>
