@@ -118,8 +118,7 @@ class PublicHealthWorkersController extends Controller {
         return $this->FetchContractView($publichealthworkerid, []);
     }
 
-    //TODO
-    public function contractDelete($employmentcontractid) {
+    public function contractDelete($publichealthworkerid, $employmentcontractid) {
         $alerts = [];
 
         $permissions = Helpers\LoginHelper::GetPermissionsLevel();
@@ -132,7 +131,7 @@ class PublicHealthWorkersController extends Controller {
         }
 
         try {
-            DB::table('publichealthworker')->delete($employmentcontractid);
+            DB::table('employmentcontract')->delete($employmentcontractid);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
             array_push($alerts, [
@@ -141,11 +140,10 @@ class PublicHealthWorkersController extends Controller {
             ]);
         }
 
-        return $this->FetchView($alerts);
+        return $this->FetchContractView($publichealthworkerid, $alerts);
     }
 
-    //TODO
-    public function contractNew() {
+    public function contractNew($publichealthworkerid) {
         $alerts = [];
 
         $permissions = Helpers\LoginHelper::GetPermissionsLevel();
@@ -158,17 +156,13 @@ class PublicHealthWorkersController extends Controller {
         }
 
         try {
-            $person = DB::table('person')->where('medicareid', '=', $_POST['medicare'])->first();
-            if($person != NULL) {
-                DB::table('publichealthworker')->insert([
-                    'PersonID' => $person->ID
-                ]);
-                $name = $person->FirstName . ' ' . $person->LastName;
-                array_push($alerts, [
-                    'type' => 'success',
-                    'text' => "New public health worker $name created"
-                ]);
-            }
+            DB::table('employmentcontract')->insert([
+                'PublicHealthWorkerID' => $publichealthworkerid,
+                'PublicHealthCentreID' => $_POST['publichealthcentre'],
+                'StartDate' => $_POST['startdate'],
+                'EndDate' => $_POST['enddate'],
+                'Schedule' => $_POST['schedule']
+            ]);
         }
         catch (\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
@@ -176,10 +170,45 @@ class PublicHealthWorkersController extends Controller {
                 'type' => 'danger',
                 'text' => "Query exception: $message"
             ]);
+            return $this->FetchContractView($publichealthworkerid, $alerts);
+        }
+
+        return $this->FetchContractView($publichealthworkerid, $alerts);
+    }
+
+    public function contractEdit($publichealthworkerid) {
+        $alerts = [];
+
+        $permissions = Helpers\LoginHelper::GetPermissionsLevel();
+        if ($permissions < 2) {
+            array_push($alerts, [
+                'type' => 'warning',
+                'text' => 'You do not have permission to perform this action!'
+            ]);
             return $this->FetchView($alerts);
         }
 
-        return $this->FetchView($alerts);
+        try {
+            DB::table('employmentcontract')
+                ->where('id', '=', $_POST['id'])
+                ->update([
+                    'PublicHealthWorkerID' => $publichealthworkerid,
+                    'PublicHealthCentreID' => $_POST['publichealthcentre'],
+                    'StartDate' => $_POST['startdate'],
+                    'EndDate' => $_POST['enddate'] ?? null,
+                    'Schedule' => $_POST['schedule'] ?? ''
+                ]);
+        }
+        catch (\Illuminate\Database\QueryException $ex) {
+            $message = $ex->getMessage();
+            array_push($alerts, [
+                'type' => 'danger',
+                'text' => "Query exception: $message"
+            ]);
+            return $this->FetchContractView($publichealthworkerid, $alerts);
+        }
+
+        return $this->FetchContractView($publichealthworkerid, $alerts);
     }
 
     private function FetchContractView($publichealthworkerid, $alerts) {
@@ -189,14 +218,14 @@ class PublicHealthWorkersController extends Controller {
             ->join('person', 'person.id', '=', 'publichealthworker.personID')
             ->join('employmentcontract', 'publichealthworker.id', '=', 'employmentcontract.publichealthworkerID')
             ->join('publichealthcentre', 'employmentcontract.publichealthcentreid', '=', 'publichealthcentre.id')
-            ->select('publichealthworker.id as publichealthworkerid', 'publichealthcentre.Name', 'employmentcontract.StartDate', 'employmentcontract.EndDate', 'employmentcontract.Schedule')
+            ->select('publichealthworker.id as publichealthworkerid', 'publichealthcentre.Name', 'employmentcontract.StartDate', 'employmentcontract.EndDate', 'employmentcontract.Schedule', 'employmentcontract.id as employmentcontractid', 'publichealthcentre.id as publichealthcentreid')
             ->where('publichealthworker.id', '=', $publichealthworkerid);
         
         //Get the public health worker
         $person = DB::table('publichealthworker')
             ->join('person', 'person.id', '=', 'publichealthworker.personID')
-            ->select('person.FirstName', 'person.LastName', 'person.id as PersonID')
-            ->where('person.id', '=', $publichealthworkerid);
+            ->select('person.FirstName', 'person.LastName', 'person.id as PersonID', 'publichealthworker.id as publichealthworkerID')
+            ->where('publichealthworker.id', '=', $publichealthworkerid);
 
         // Apply search queries
         if (array_key_exists('publichealthcentreID', $_GET) && $_GET['publichealthcentreID'] != '') {
@@ -213,7 +242,7 @@ class PublicHealthWorkersController extends Controller {
             $page = '/';
         }
         return view ($page, [
-            'publichealthworkers' => $query->get(),
+            'contracts' => $query->get(),
             'alerts' => $alerts,
             'person' => $person->first()
         ]);

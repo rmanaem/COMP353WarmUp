@@ -5,6 +5,7 @@
         <div class="title m-b-md">
             <?=$person->FirstName . ' ' . $person->LastName?> Contracts
         </div>
+        <a class="btn btn-md" href="/data/publichealthworkers/">Back</a>
         <table class="table">
             <thead>
                 <tr>
@@ -14,43 +15,59 @@
                     <th scope="col">Schedule</th>
                 </tr>
             </thead>
-            <form action="/data/publichealthworkers/contract/<?= $person->PersonID ?>/new" method="POST">
+            <form action="/data/publichealthworkers/contract/<?= $person->publichealthworkerID ?>/new" method="POST">
                 @csrf
                 <tr>
-                    <td scope="row"><input type="text" class="form-control form-control-sm" name="publichealthcentrename" placeholder="Public Health Centre Name"></td>
+                    <td scope="row"><input type="text" class="form-control form-control-sm" name="publichealthcentre" placeholder="Public Health Centre"></td>
                     <td><input type="text" class="form-control form-control-sm" name="startdate" placeholder="Start Date"></td>
                     <td><input type="text" class="form-control form-control-sm" name="enddate" placeholder="End Date"></td>
                     <td><input type="text" class="form-control form-control-sm" name="schedule" placeholder="Schedule"></td>
                     <td colspan=2><button type="submit" class="btn btn-success btn-sm w-100">Add New</a></td>
                 </tr>
             </form>
-            <?php foreach($publichealthworkers as $publichealthworker) : ?>
-                <tr id="publichealthcentre_<?= $publichealthworker->publichealthworkerid ?>">
-                    <td scope="row"><?= $publichealthworker->Name ?></td>
-                    <td><?= $publichealthworker->StartDate ?></td>
-                    <td><?= $publichealthworker->EndDate ?></td>
-                    <td><?= $publichealthworker->Schedule ?></td>
-                    <td><a class="btn btn-warning btn-sm w-100" href="/data/publichealthworkers/contract/<?= $publichealthworker->publichealthworkerid ?>">Edit</a></td>
+            <?php foreach($contracts as $contract) : ?>
+                <tr id="publichealthworker_<?= $contract->employmentcontractid ?>">
+                    <td scope="row"><?= $contract->Name ?></td>
+                    <td><?= $contract->StartDate ?></td>
+                    <td><?= $contract->EndDate ?></td>
+                    <td><?= $contract->Schedule ?></td>
+                <td><button class="btn btn-warning btn-sm w-100" onclick="Edit(<?= $contract->employmentcontractid  ?>)">Edit</button></td>
                     <td>
-                        <button id="delete_<?= $publichealthworker->publichealthworkerid ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $publichealthworker->publichealthworkerid ?>)">Delete</button>
-                        <a id="confirm_<?= $publichealthworker->publichealthworkerid ?>" href="/data/publichealthworkers/contract/delete/<?= $publichealthworker->publichealthworkerid ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
+                        <button id="delete_<?= $contract->employmentcontractid ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $contract->employmentcontractid ?>)">Delete</button>
+                        <a id="confirm_<?= $contract->employmentcontractid ?>" href="/data/publichealthworkers/contract/<?= $person->publichealthworkerID ?>/delete/<?= $contract->employmentcontractid ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
                     </td>
                 </tr>
-                <form action="/data/publichealthworkers/edit" method="POST">
+                <form action="/data/publichealthworkers/contract/<?= $person->publichealthworkerID ?>/edit" method="POST">
                 @csrf
-                    <tr id="editing_<?= $publichealthworker->publichealthworkerid ?>" style="display:none">
+                    <tr id="editing_<?= $contract->employmentcontractid ?>" style="display:none">
                         <td scope="row">
-                            <input type="hidden" name="id" value="<?= $publichealthworker->publichealthworkerid ?>" />
-                            <input type="text" class="form-control form-control-sm" name="publichealthcentrename" placeholder="Public Health Centre Name" value="<?= $publichealthworker->publichealthworkerid ?>" />
+                            <input type="hidden" name="id" value="<?= $contract->employmentcontractid ?>" />
+                            <input type="text" class="form-control form-control-sm" name="publichealthcentre" placeholder="Public Health Centre" value="<?= $contract->publichealthcentreid ?>" />
                         </td>
-                        <td><input type="text" class="form-control form-control-sm" name="startdate" placeholder="Start Date" value="<?= $publichealthworker->StartDate ?>" /></td>
-                        <td><input type="text" class="form-control form-control-sm" name="enddate" placeholder="End Date" value="<?= $publichealthworker->EndDate ?>" /></td>
-                        <td><input type="text" class="form-control form-control-sm" name="schedule" placeholder="Schedule" value="<?= $publichealthworker->Schedule ?>" /></td>
-                        <td><button type="button" class="btn btn-warning btn-sm w-100" onclick="Cancel(<?= $publichealthworker->publichealthworkerid ?>)">Cancel</button></td>
+                        <td><input type="text" class="form-control form-control-sm" name="startdate" placeholder="Start Date" value="<?= $contract->StartDate ?>" /></td>
+                        <td><input type="text" class="form-control form-control-sm" name="enddate" placeholder="End Date" value="<?= $contract->EndDate ?>" /></td>
+                        <td><input type="text" class="form-control form-control-sm" name="schedule" placeholder="Schedule" value="<?= $contract->Schedule ?>" /></td>
+                        <td><button type="button" class="btn btn-warning btn-sm w-100" onclick="Cancel(<?= $contract->employmentcontractid ?>)">Cancel</button></td>
                         <td><button type="submit" class="btn btn-success btn-sm w-100">Save</a></td>
                     </tr>
                 </form>
             <?php endforeach; ?>
         </table>
     </div>
+<script>
+function Edit(id) {
+    $('#editing_' + id).show();
+    $('#publichealthworker_' + id).hide();
+}
+
+function Cancel(id) {
+    $('#editing_' + id).hide();
+    $('#publichealthworker_' + id).show();
+}
+
+function Delete(id) {
+    $('#delete_' + id).hide();
+    $('#confirm_' + id).show();
+}
+</script>
 @endsection
