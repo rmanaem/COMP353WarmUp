@@ -189,7 +189,7 @@ class PublicHealthWorkersController extends Controller {
             ->join('person', 'person.id', '=', 'publichealthworker.personID')
             ->join('employmentcontract', 'publichealthworker.id', '=', 'employmentcontract.publichealthworkerID')
             ->join('publichealthcentre', 'employmentcontract.publichealthcentreid', '=', 'publichealthcentre.id')
-            ->select('publichealthcentre.Name', 'employmentcontract.StartDate', 'employmentcontract.EndDate', 'employmentcontract.Schedule');
+            ->select('publichealthworker.id as publichealthworkerid', 'publichealthcentre.Name', 'employmentcontract.StartDate', 'employmentcontract.EndDate', 'employmentcontract.Schedule');
         
         //Get the public health worker
         $person = DB::table('publichealthworker')

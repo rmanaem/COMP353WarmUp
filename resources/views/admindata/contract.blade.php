@@ -24,28 +24,28 @@
                     <td colspan=2><button type="submit" class="btn btn-success btn-sm w-100">Add New</a></td>
                 </tr>
             </form>
-            <?php foreach($publichealthworkers as $publichealthcentre) : ?>
-                <tr id="publichealthcentre_<?= $employmentcontract->employmentcontractid ?>">
-                    <td scope="row"><?= $employmentcontract->StartDate ?></td>
-                    <td><?= $employmentcontract->EndDate ?></td>
-                    <td><?= $employmentcontract->Schedule ?></td>
-                    <td><a class="btn btn-warning btn-sm w-100" href="/data/publichealthworkers/contract/<?= $employmentcontract->employmentcontractid ?>">Edit</a></td>
+            <?php foreach($publichealthworkers as $publichealthworker) : ?>
+                <tr id="publichealthcentre_<?= $publichealthworker->publichealthworkerid ?>">
+                    <td scope="row"><?= $publichealthworker->StartDate ?></td>
+                    <td><?= $publichealthworker->EndDate ?></td>
+                    <td><?= $publichealthworker->Schedule ?></td>
+                    <td><a class="btn btn-warning btn-sm w-100" href="/data/publichealthworkers/contract/<?= $publichealthworker->publichealthworkerid ?>">Edit</a></td>
                     <td>
-                        <button id="delete_<?= $employmentcontract->employmentcontractid ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $employmentcontract->employmentcontractid ?>)">Delete</button>
-                        <a id="confirm_<?= $employmentcontract->employmentcontractid ?>" href="/data/publichealthworkers/contract/delete/<?= $employmentcontract->employmentcontractid ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
+                        <button id="delete_<?= $publichealthworker->publichealthworkerid ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $publichealthworker->publichealthworkerid ?>)">Delete</button>
+                        <a id="confirm_<?= $publichealthworker->publichealthworkerid ?>" href="/data/publichealthworkers/contract/delete/<?= $publichealthworker->publichealthworkerid ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
                     </td>
                 </tr>
                 <form action="/data/publichealthworkers/edit" method="POST">
                 @csrf
-                    <tr id="editing_<?= $employmentcontract->employmentcontractid ?>" style="display:none">
+                    <tr id="editing_<?= $publichealthworker->publichealthworkerid ?>" style="display:none">
                         <td scope="row">
-                            <input type="hidden" name="id" value="<?= $employmentcontract->employmentcontractid ?>" />
-                            <input type="text" class="form-control form-control-sm" name="publichealthcentrename" placeholder="Public Health Centre Name" value="<?= $employmentcontract->employmentcontractid ?>" />
+                            <input type="hidden" name="id" value="<?= $publichealthworker->publichealthworkerid ?>" />
+                            <input type="text" class="form-control form-control-sm" name="publichealthcentrename" placeholder="Public Health Centre Name" value="<?= $publichealthworker->publichealthworkerid ?>" />
                         </td>
-                        <td><input type="text" class="form-control form-control-sm" name="startdate" placeholder="Start Date" value="<?= $employmentcontract->StartDate ?>" /></td>
-                        <td><input type="text" class="form-control form-control-sm" name="enddate" placeholder="End Date" value="<?= $employmentcontract->EndDate ?>" /></td>
-                        <td><input type="text" class="form-control form-control-sm" name="schedule" placeholder="Schedule" value="<?= $employmentcontract->Schedule ?>" /></td>
-                        <td><button type="button" class="btn btn-warning btn-sm w-100" onclick="Cancel(<?= $employmentcontract->employmentcontractid ?>)">Cancel</button></td>
+                        <td><input type="text" class="form-control form-control-sm" name="startdate" placeholder="Start Date" value="<?= $publichealthworker->StartDate ?>" /></td>
+                        <td><input type="text" class="form-control form-control-sm" name="enddate" placeholder="End Date" value="<?= $publichealthworker->EndDate ?>" /></td>
+                        <td><input type="text" class="form-control form-control-sm" name="schedule" placeholder="Schedule" value="<?= $publichealthworker->Schedule ?>" /></td>
+                        <td><button type="button" class="btn btn-warning btn-sm w-100" onclick="Cancel(<?= $publichealthworker->publichealthworkerid ?>)">Cancel</button></td>
                         <td><button type="submit" class="btn btn-success btn-sm w-100">Save</a></td>
                     </tr>
                 </form>
