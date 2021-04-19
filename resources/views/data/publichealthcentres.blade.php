@@ -27,9 +27,29 @@
                 <td><input type="text" class="form-control form-control-sm" name="numberofhealthworkers" placeholder="Number of Health Workers" value="<?= $_GET["numberofhealthworkers"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="phonenumber" placeholder="Phone Number" value="<?= $_GET["phonenumber"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="website" placeholder="Website" value="<?= $_GET["website"] ?? '' ?>" /></td>
-                <td><input type="text" class="form-control form-control-sm" name="type" placeholder="Type" value="<?= $_GET["type"] ?? '' ?>" /></td>
-                <td><input type="text" class="form-control form-control-sm" name="drivethrough" placeholder="Drive Through" value="<?= $_GET["drivethrough"] ?? '' ?>" /></td>
-                <td><input type="text" class="form-control form-control-sm" name="appointmenttype" placeholder="Appointment Type" value="<?= $_GET["appointmenttype"] ?? '' ?>" /></td>
+                <td>
+                    <select class="form-control form-control-sm" name='type' value="<?= $_GET["type"] ?? '' ?>">
+                        <option value=''>N/A</option>
+                        <option value='c'>Clinic</option>
+                        <option value='h'>Hospital</option>
+                        <option value='s'>Special</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control form-control-sm" name='drivethrough' value="<?= $_GET["drivethrough"] ?? '' ?>">
+                        <option value=''>N/A</option>
+                        <option value='0'>No</option>
+                        <option value='1'>Yes</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control form-control-sm" name='appointmenttype' value="<?= $_GET["appointmenttype"] ?? '' ?>">
+                        <option value=''>N/A</option>
+                        <option value='0'>Appointment only</option>
+                        <option value='1'>Walk-in</option>
+                        <option value='2'>Appointment and walk-in</option>
+                    </select>
+                </td>
                 <td colspan=2><button type="submit" class="btn btn-primary btn-sm w-100">Search</button></td>
             </tr>
         </form>
