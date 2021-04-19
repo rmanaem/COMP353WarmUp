@@ -83,6 +83,7 @@
                             </div>
                         </li>
                     @endif
+                    @if($permissions != 0)
                     <li class="nav-item">
                         <a class="nav-link" href="/messages">Messages
                         <?php if($hasMessages) : ?>
