@@ -15,7 +15,6 @@ class SymptomTrackingController extends Controller {
         $alerts = [];
         $person = '';
         if (Helpers\LoginHelper::GetPermissionsLevel() == 2) {
-            var_dump($_POST);
             $person = DB::table('Person')->where('MedicareID', '=', $_POST['medicareID'] ?? '')->first();
             if ($person == null) {
                 array_push($alerts, [
