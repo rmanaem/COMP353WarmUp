@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Helpers;
 
-class RecommendationsController extends Controller
+class GroupZonesController extends Controller
 {
     public function index() {
         return $this->FetchView([]);
@@ -24,16 +24,16 @@ class RecommendationsController extends Controller
             return $this->FetchView($alerts);
         }
 
-        // Update the recommendation
+        // Update the group zone
         try {
-            DB::table('recommendation')
+            DB::table('groupzone')
                 ->where('ID', '=', $_POST['id'])
                 ->update([
-                'Text' => $_POST['text']
+                'Name' => $_POST['name']
             ]);
             array_push($alerts, [
                 'type' => 'success',
-                'text' => "Recommendation updated"
+                'text' => "GroupZone updated"
             ]);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
@@ -60,7 +60,7 @@ class RecommendationsController extends Controller
         }
 
         try {
-            DB::table('recommendation')->delete($id);
+            DB::table('groupzone')->delete($id);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
             array_push($alerts, [
@@ -84,14 +84,14 @@ class RecommendationsController extends Controller
             return $this->FetchView($alerts);
         }
 
-        // Create new recommendation
+        // Create new group zone
         try {
-            DB::table('recommendation')->insert([
-                'Text' => $_POST['text']
+            DB::table('groupzone')->insert([
+                'Name' => $_POST['name']
             ]);
             array_push($alerts, [
                 'type' => 'success',
-                'text' => "New recommendation created"
+                'text' => "New groupzone created"
             ]);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
@@ -101,27 +101,32 @@ class RecommendationsController extends Controller
             ]);
             return $this->FetchView($alerts);
         }
+        // var_dump($_POST);
 
         return $this->FetchView($alerts);
     }
 
-
-
     private function FetchView($alerts) {
 
         // Get the table
-        $query = DB::table('recommendation');
+        $query = DB::table('groupzone');
         
+        // Apply search queries
+        if (array_key_exists('name', $_GET) && $_GET['name'] != '') {
+            $name = $_GET['name'];
+            $query = $query->where('name', 'like', "%$name%");
+        }
+
         // Serve the view
         $permissions = Helpers\LoginHelper::GetPermissionsLevel();
         $page = '';
         if ($permissions == 2) {
-            $page = '/admindata/recommendations';
+            $page = '/admindata/groupzones';
         } else {
-            $page = '/data/recommendations';
+            $page = '/data/groupzones';
         }
         return view ($page, [
-            'recommendations' => $query->get(),
+            'groupzones' => $query->get(),
             'alerts' => $alerts
         ]);
     }

@@ -1,7 +1,12 @@
 <?php
     use App\Http\Helpers;
-    $account = Helpers\LoginHelper::GetAccount();
+    $account = null;
+    $hasMessages = false;
     $permissions = Helpers\LoginHelper::GetPermissionsLevel();
+    if ($permissions != 0) {
+        $account = Helpers\LoginHelper::GetAccount();
+        $hasMessages = Helpers\MessageHelper::HasMessages();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -68,15 +73,32 @@
                         </div>
                     </li>
                     @endif
-                    @if($permissions != 0)
+                    @if($permissions == 2)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reports
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/symptomHistory">Symptom History</a>
+                            </div>
+                        </li>
+                    @endif
                     <li class="nav-item">
-                        <a class="nav-link" href="/messages">Messages</a>
+                        <a class="nav-link" href="/messages">Messages
+                        <?php if($hasMessages) : ?>
+                            <span style="color:red">&#33;</span>
+                        <?php endif; ?></a>
                     </li>
                     @endif
                     @if($permissions != 0)
                         <li class="nav-item">
                             <a class="nav-link" href="/symptomTracking">Symptom Tracking</a>
                         </li>
+                    @endif
+                    @if($permissions == 2)
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pcrEntry">PCR Results Entry</a>
+                    </li>
                     @endif
                 </ul>
             </div>
