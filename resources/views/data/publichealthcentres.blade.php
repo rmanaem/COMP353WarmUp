@@ -84,11 +84,6 @@
                 @if ($publichealthcentre->AppointmentType == '2')
                 <td>Appointment and walk-in</td>
                 @endif
-                <td><button class="btn btn-warning btn-sm w-100" onclick="Edit(<?= $publichealthcentre->ID ?>)">Edit</button></td>
-                <td>
-                    <button id="delete_<?= $publichealthcentre->ID ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $publichealthcentre->ID ?>)">Delete</button>
-                    <a id="confirm_<?= $publichealthcentre->ID ?>" href="/data/publichealthcentres/delete/<?= $publichealthcentre->ID ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
-                </td>
             </tr>
         <?php endforeach; ?>
     </table>
