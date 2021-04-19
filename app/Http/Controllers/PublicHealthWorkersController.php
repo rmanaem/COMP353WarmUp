@@ -119,7 +119,7 @@ class PublicHealthWorkersController extends Controller {
     }
 
     //TODO
-    public function contractDelete($employmentcontractid) {
+    public function contractDelete($employmentcontractid, $publichealthworkerid) {
         $alerts = [];
 
         $permissions = Helpers\LoginHelper::GetPermissionsLevel();
@@ -128,11 +128,11 @@ class PublicHealthWorkersController extends Controller {
                 'type' => 'warning',
                 'text' => 'You do not have permission to perform this action!'
             ]);
-            return $this->FetchView($alerts);
+            return $this->FetchContractView($publichealthworkerid, $alerts);
         }
 
         try {
-            DB::table('publichealthworker')->delete($employmentcontractid);
+            DB::table('employmentcontract')->delete($employmentcontractid);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
             array_push($alerts, [
@@ -141,7 +141,7 @@ class PublicHealthWorkersController extends Controller {
             ]);
         }
 
-        return $this->FetchView($alerts);
+        return $this->FetchContractView($publichealthworkerid, $alerts);
     }
 
     //TODO
@@ -189,7 +189,7 @@ class PublicHealthWorkersController extends Controller {
             ->join('person', 'person.id', '=', 'publichealthworker.personID')
             ->join('employmentcontract', 'publichealthworker.id', '=', 'employmentcontract.publichealthworkerID')
             ->join('publichealthcentre', 'employmentcontract.publichealthcentreid', '=', 'publichealthcentre.id')
-            ->select('publichealthworker.id as publichealthworkerid', 'publichealthcentre.Name', 'employmentcontract.StartDate', 'employmentcontract.EndDate', 'employmentcontract.Schedule')
+            ->select('publichealthworker.id as publichealthworkerid', 'publichealthcentre.Name', 'employmentcontract.StartDate', 'employmentcontract.EndDate', 'employmentcontract.Schedule', 'employmentcontract.id as employmentContractID')
             ->where('publichealthworker.id', '=', $publichealthworkerid);
         
         //Get the public health worker
