@@ -6,7 +6,7 @@
             Symptom History
         </div>
         
-        <form class="col-md-4" action="/symptomHistory" method="POST">
+        <form class="col-md-4" action="symptomHistory" method="POST">
         @csrf
             <div class="row">
                 <div class="col-md-6">

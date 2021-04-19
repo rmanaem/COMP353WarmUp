@@ -23,7 +23,7 @@
                 <th scope="col" colspan=2>Actions</th>
             </tr>
         </thead>
-        <form action="/data/persons" method="GET">
+        <form action="data/persons" method="GET">
             <tr>
                 <td scope="row"><input type="text" class="form-control form-control-sm" name="firstname" placeholder="First name" value="<?= $_GET["firstname"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="lastname" placeholder="Last name" value="<?= $_GET["lastname"] ?? '' ?>" /></td>
@@ -39,7 +39,7 @@
                 <td colspan=2><button type="submit" class="btn btn-primary btn-sm w-100">Search</button></td>
             </tr>
         </form>
-        <form action="/data/persons/new" method="POST">
+        <form action="data/persons/new" method="POST">
         @csrf
             <tr>
                 <td scope="row"><input type="text" class="form-control form-control-sm" name="firstname" placeholder="First name" /></td>
@@ -72,10 +72,10 @@
                 <td><button class="btn btn-warning btn-sm w-100" onclick="Edit(<?= $person->PersonID ?>)">Edit</button></td>
                 <td>
                     <button id="delete_<?= $person->PersonID ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $person->PersonID ?>)">Delete</button>
-                    <a id="confirm_<?= $person->PersonID ?>" href="/data/persons/delete/<?= $person->PersonID ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
+                    <a id="confirm_<?= $person->PersonID ?>" href="data/persons/delete/<?= $person->PersonID ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
                 </td>
             </tr>
-            <form action="/data/persons/edit" method="POST">
+            <form action="data/persons/edit" method="POST">
             @csrf
                 <tr id="editing_<?= $person->PersonID ?>" style="display:none">
                     <td scope="row">

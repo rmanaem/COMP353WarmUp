@@ -16,7 +16,7 @@
                 <th scope="col">Actions</th>
             </tr>
         </thead>
-        <form action="/recommendations/new" method="POST">
+        <form action="recommendations/new" method="POST">
             @csrf
                 <tr>
                     <td scope="row"><input type="text" class="form-control form-control-sm" name="text" placeholder="Text" /></td>
@@ -31,10 +31,10 @@
                 <td><button class="btn btn-warning btn-sm w-100" onclick="Edit(<?= $recommendation->ID ?>)">Edit</button></td>
                 <td>
                     <button id="delete_<?= $recommendation->ID ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $recommendation->ID ?>)">Delete</button>
-                    <a id="confirm_<?= $recommendation->ID ?>" href="/recommendations/delete/<?= $recommendation->ID ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
+                    <a id="confirm_<?= $recommendation->ID ?>" href="recommendations/delete/<?= $recommendation->ID ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
                 </td>
             </tr>
-            <form action="/recommendations/edit" method="POST">
+            <form action="recommendations/edit" method="POST">
             @csrf
                 <tr id="editing_<?= $recommendation->ID ?>" style="display:none">
                     <td scope="row">
