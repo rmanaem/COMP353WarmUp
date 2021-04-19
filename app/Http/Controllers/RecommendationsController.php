@@ -24,13 +24,6 @@ class RecommendationsController extends Controller
             return $this->FetchView($alerts);
         }
 
-        if ($_POST['text'] == '') {
-            array_push($alerts, [
-                'type' => 'danger',
-                'text' => "Text is required!"
-            ]);
-        }
-
         // Update the recommendation
         try {
             DB::table('recommendation')
@@ -89,13 +82,6 @@ class RecommendationsController extends Controller
                 'text' => 'You do not have permission to perform this action!'
             ]);
             return $this->FetchView($alerts);
-        }
-
-        if ($_POST['text'] == '') {
-            array_push($alerts, [
-                'type' => 'danger',
-                'text' => "Text is required!"
-            ]);
         }
 
         // Create new recommendation
