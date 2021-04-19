@@ -79,7 +79,7 @@ class PublicHealthWorkersController extends Controller {
         // Get the table
         $query = DB::table('publichealthworker')
             ->join('person', 'person.id', '=', 'publichealthworker.personID')
-            ->select('person.id as PersonID', 'person.FirstName', 'person.LastName', 'person.DateOfBirth', 'person.MedicareID');
+            ->select('person.id as PersonID', 'person.FirstName', 'person.LastName', 'person.DateOfBirth', 'person.MedicareID', 'publichealthworker.id as publichealthworkerid');
 
         // Apply search queries
         if (array_key_exists('firstname', $_GET) && $_GET['firstname'] != '') {
@@ -222,8 +222,8 @@ class PublicHealthWorkersController extends Controller {
             ->where('publichealthworker.id', '=', $publichealthworkerid);
         
         //Get the public health worker
-        $person = DB::table('publichealthworker')
-            ->join('person', 'person.id', '=', 'publichealthworker.personID')
+        $person = DB::table('person')
+            ->join('publichealthworker', 'person.id', '=', 'publichealthworker.personID')
             ->select('person.FirstName', 'person.LastName', 'person.id as PersonID', 'publichealthworker.id as publichealthworkerID')
             ->where('publichealthworker.id', '=', $publichealthworkerid);
 
