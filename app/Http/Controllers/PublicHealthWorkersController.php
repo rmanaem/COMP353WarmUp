@@ -127,7 +127,7 @@ class PublicHealthWorkersController extends Controller {
                 'type' => 'warning',
                 'text' => 'You do not have permission to perform this action!'
             ]);
-            return $this->FetchView($alerts);
+            return $this->FetchContractView($publichealthworkerid, $alerts);
         }
 
         try {
