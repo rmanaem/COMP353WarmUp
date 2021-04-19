@@ -67,3 +67,6 @@ Route::post('/recommendations/new', [Controllers\RecommendationsController::clas
 
 Route::get('/symptomTracking', [Controllers\SymptomTrackingController::class, 'index']);
 Route::post('/symptomTracking', [Controllers\SymptomTrackingController::class, 'submit']);
+
+Route::get('/pcrEntry/', [Controllers\PcrTestController::class, 'index']);
+Route::post('/pcrEntry/', [Controllers\PcrTestController::class, 'submit']);
