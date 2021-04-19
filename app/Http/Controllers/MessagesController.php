@@ -18,7 +18,7 @@ class MessagesController extends Controller {
             ->where('ID', '=', $id)
             ->update(['MessageRead' => 1]);
         $message = DB::table('Message')
-            ->join('MessageTemplate', 'MessageTemplate.ID', '=', 'Message.templateid')
+            ->join('MessageTemplate', 'MessageTemplate.ID', '=', 'Message.TemplateID')
             ->select('Message.ID as ID', 'Message.DateTime as DateTime', 'MessageTemplate.Subject as Subject', 'Message.Text as Text')
             ->where('Message.ID', '=', $id)
             ->first();
@@ -48,10 +48,10 @@ class MessagesController extends Controller {
         $account = Helpers\LoginHelper::GetAccount();
 
         $messages = DB::table('Message')
-            ->join('MessageTemplate', 'MessageTemplate.ID', '=', 'message.templateid')
+            ->join('MessageTemplate', 'MessageTemplate.ID', '=', 'message.TemplateID')
             ->where('PersonID', '=', $account->ID)
             ->select('Message.ID as ID', 'Message.PersonID as PersonID', 'Message.MessageRead as Read', 'Message.DateTime as DateTime', 'MessageTemplate.Subject as Subject')
-            ->orderByDesc('Message.datetime')
+            ->orderByDesc('Message.DateTime')
             ->get();
         
         return view ('/messages', [
