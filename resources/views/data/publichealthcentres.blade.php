@@ -20,7 +20,7 @@
                 <th scope="col"></th>
             </tr>
         </thead>
-        <form action="data/publichealthcentres" method="GET">
+        <form action="/data/publichealthcentres" method="GET">
             <tr>
                 <td scope="row"><input type="text" class="form-control form-control-sm" name="name" placeholder="Name" value="<?= $_GET["name"] ?? '' ?>" /></td>
                 <td><input type="text" class="form-control form-control-sm" name="address" placeholder="Address" value="<?= $_GET["address"] ?? '' ?>" /></td>

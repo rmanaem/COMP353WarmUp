@@ -14,7 +14,7 @@
                     <th scope="col">Medicare ID</th>
                 </tr>
             </thead>
-            <form action="data/publichealthworkers" method="GET">
+            <form action="/data/publichealthworkers" method="GET">
                 <tr>
                     <td scope="row"><input type="text" class="form-control form-control-sm" name="firstname" placeholder="First name" value="<?= $_GET["firstname"] ?? '' ?>" /></td>
                     <td><input type="text" class="form-control form-control-sm" name="lastname" placeholder="Last name" value="<?= $_GET["lastname"] ?? '' ?>" /></td>
@@ -23,7 +23,7 @@
                     <td colspan=2><button type="submit" class="btn btn-primary btn-sm w-100">Search</button></td>
                 </tr>
             </form>
-            <form action="data/publichealthworkers/new" method="POST">
+            <form action="/data/publichealthworkers/new" method="POST">
                 @csrf
                 <tr>
                     <td scope="row"><input type="text" class="form-control form-control-sm" name="firstname" placeholder="First name" /></td>
@@ -39,13 +39,13 @@
                     <td><?= $publichealthworker->LastName ?></td>
                     <td><?= $publichealthworker->DateOfBirth ?></td>
                     <td><?= $publichealthworker->MedicareID ?></td>
-                    <td><a class="btn btn-warning btn-sm w-100" href="data/publichealthworkers/contract/<?= $publichealthworker->PublicHealthWorkerID ?>">Edit</a></td>
+                    <td><a class="btn btn-warning btn-sm w-100" href="/data/publichealthworkers/contract/<?= $publichealthworker->PublicHealthWorkerID ?>">Edit</a></td>
                     <td>
                         <button id="delete_<?= $publichealthworker->PublicHealthWorkerID ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $publichealthworker->PublicHealthWorkerID ?>)">Delete</button>
-                        <a id="confirm_<?= $publichealthworker->PublicHealthWorkerID ?>" href="data/publichealthworkers/delete/<?= $publichealthworker->PublicHealthWorkerID ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
+                        <a id="confirm_<?= $publichealthworker->PublicHealthWorkerID ?>" href="/data/publichealthworkers/delete/<?= $publichealthworker->PublicHealthWorkerID ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
                     </td>
                 </tr>
-                <form action="data/publichealthworkers/edit" method="POST">
+                <form action="/data/publichealthworkers/edit" method="POST">
                 @csrf
                     <tr id="editing_<?= $publichealthworker->PublicHealthWorkerID ?>" style="display:none">
                         <td scope="row">
