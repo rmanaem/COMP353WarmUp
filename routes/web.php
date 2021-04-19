@@ -51,9 +51,9 @@ Route::get('/login', [Controllers\LoginController::class, 'index']);
 Route::post('/login', [Controllers\LoginController::class, 'login']);
 Route::get('/logout', [Controllers\LoginController::class, 'logout']);
 
-Route::get('/messages', function () {
-    return view('messages');
-});
+Route::get('/messages', [Controllers\MessagesController::class, 'index']);
+Route::get('/messages/view/{id}', [Controllers\MessagesController::class, 'view']);
+Route::get('/messages/delete/{id}', [Controllers\MessagesController::class, 'delete']);
 
 // Recommendations
 Route::get('/recommendations/', [Controllers\RecommendationsController::class, 'index']);
