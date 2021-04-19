@@ -55,6 +55,28 @@ class RegionsController extends Controller {
                     'Name' => $_POST['name'],
                     'province' => $_POST['province']
                 ]);
+
+
+                // Send a message to all residents
+                $region = DB::table('person')
+                        ->join('postalcode', 'postalcode.id', '=', 'person.postalcodeid')
+                        ->join('city', 'city.id', '=', 'postalcode.cityID')
+                        ->join('region', 'region.id', '=', 'city.regionID')
+                        ->where('region.ID', '=', $_POST['id'])
+                        ->select('region.*')->first();
+                $people = DB::table('person')
+                    ->join('postalcode', 'postalcode.id', '=', 'person.postalcodeid')
+                    ->join('city', 'city.id', '=', 'postalcode.cityID')
+                    ->join('region', 'region.id', '=', 'city.regionID')
+                    ->where('region.ID', '=', $_POST['id'])
+                    ->pluck('person.id');
+                foreach ($people as $person) {
+                    Helpers\MessageHelper::CreateMessage($person, 5, [
+                        'RegionName' => $region->Name,
+                        'AlertLevelID' => $_POST['alertlevel'],
+                        'OldAlertID' => $previous->AlertLevelID
+                    ]);
+                }
             });
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();

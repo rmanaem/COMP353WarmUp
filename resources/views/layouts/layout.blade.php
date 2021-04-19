@@ -1,8 +1,12 @@
 <?php
     use App\Http\Helpers;
-    $account = Helpers\LoginHelper::GetAccount();
+    $account = null;
+    $hasMessages = false;
     $permissions = Helpers\LoginHelper::GetPermissionsLevel();
-    $hasMessages = Helpers\MessageHelper::HasMessages();
+    if ($permissions != 0) {
+        $account = Helpers\LoginHelper::GetAccount();
+        $hasMessages = Helpers\MessageHelper::HasMessages();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
