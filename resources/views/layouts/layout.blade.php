@@ -91,6 +91,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/symptomTracking">Symptom Tracking</a>
                     </li>
+                    @if($permissions == 2)
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pcrEntry">PCR Results Entry</a>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </nav>

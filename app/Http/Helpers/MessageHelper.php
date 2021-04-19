@@ -50,8 +50,8 @@ class MessageHelper {
         $text = $template->Template;
         $text = str_replace('{PersonName}', $person->FirstName . ' ' . $person->LastName, $text);
         $text = str_replace('{PublicHealthCentreName}', $data['PublicHealthCentreName'], $text);
-        $text = str_replace('{PCRDateOfTest}', $data['PCRDateOfTest'], $text);
-        $text = str_replace('{url}', gethostname(), $text);
+        $text = str_replace('{PCRTestDateOfTest}', $data['PCRTestDateOfTest'], $text);
+        $text = str_replace('{url}', 'http://' . $_SERVER['HTTP_HOST'], $text);
         $text = str_replace('{Recommendations}', $recommendString, $text);
 
         return [
@@ -70,8 +70,8 @@ class MessageHelper {
         $text = $template->Template;
         $text = str_replace('{PersonName}', $person->FirstName . ' ' . $person->LastName, $text);
         $text = str_replace('{PublicHealthCentreName}', $data['PublicHealthCentreName'], $text);
-        $text = str_replace('{PCRDateOfTest}', $data['PCRDateOfTest'], $text);
-        $text = str_replace('{url}', gethostname(), $text);
+        $text = str_replace('{PCRTestDateOfTest}', $data['PCRTestDateOfTest'], $text);
+        $text = str_replace('{url}', 'http://' . $_SERVER['HTTP_HOST'], $text);
 
         return [
             'PersonID' => $personID,
@@ -101,10 +101,18 @@ class MessageHelper {
     private static function CreateMessageTemplateReportDue($personID, $data) {
         $person = DB::table('person')->find($personID);
         $template = DB::table('messagetemplate')->find(4);
+        $recommendations = DB::table('recommendation')->get();
+
+        $recommendString = '<ul>';
+        foreach ($recommendations as $recommendation) {
+            $recommendString .= '<li>' . $recommendation->Text . '</li>';
+        }
+        $recommendString .= '</ul>';
 
         $text = $template->Template;
         $text = str_replace('{PersonName}', $person->FirstName . ' ' . $person->LastName, $text);
-        $text = str_replace('{url}', gethostname(), $text);
+        $text = str_replace('{url}', 'http://' . $_SERVER['HTTP_HOST'], $text);
+        $text = str_replace('{Recommendations}', $recommendString, $text);
 
         return [
             'PersonID' => $personID,
