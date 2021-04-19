@@ -14,7 +14,7 @@
                     <th scope="col">Schedule</th>
                 </tr>
             </thead>
-            <form action="/data/publichealthworkers/contract/new" method="POST">
+            <form action="/data/publichealthworkers/contract/<?= $person->PersonID ?>/new" method="POST">
                 @csrf
                 <tr>
                     <td scope="row"><input type="text" class="form-control form-control-sm" name="publichealthcentrename" placeholder="Public Health Centre Name"></td>
@@ -26,7 +26,8 @@
             </form>
             <?php foreach($publichealthworkers as $publichealthworker) : ?>
                 <tr id="publichealthcentre_<?= $publichealthworker->publichealthworkerid ?>">
-                    <td scope="row"><?= $publichealthworker->StartDate ?></td>
+                    <td scope="row"><?= $publichealthworker->Name ?></td>
+                    <td><?= $publichealthworker->StartDate ?></td>
                     <td><?= $publichealthworker->EndDate ?></td>
                     <td><?= $publichealthworker->Schedule ?></td>
                     <td><a class="btn btn-warning btn-sm w-100" href="/data/publichealthworkers/contract/<?= $publichealthworker->publichealthworkerid ?>">Edit</a></td>
