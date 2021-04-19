@@ -27,19 +27,23 @@ Route::get('/data/groupzones', function () {
     return view('/data/groupzones');
 });
 
-// PERSONS
+// Persons
 Route::get('/data/persons/', [Controllers\PersonsController::class, 'index']);
 Route::get('/data/persons/delete/{id}', [Controllers\PersonsController::class, 'delete']);
 Route::post('/data/persons/edit', [Controllers\PersonsController::class, 'edit']);
 Route::post('/data/persons/new', [Controllers\PersonsController::class, 'new']);
 
-Route::get('/data/publichealthworkers', function () {
-    return view('/data/publichealthworkers');
-});
+// Public Health Workers
+Route::get('/data/publichealthworkers/', [Controllers\PublicHealthWorkersController::class, 'index']);
+Route::get('/data/publichealthworkers/delete/{id}', [Controllers\PublicHealthWorkersController::class, 'delete']);
+Route::post('/data/publichealthworkers/edit', [Controllers\PublicHealthWorkersController::class, 'edit']);
+Route::post('/data/publichealthworkers/new', [Controllers\PublicHealthWorkersController::class, 'new']);
 
-Route::get('/data/regions', function () {
-    return view('/data/regions');
-});
+// Regions
+Route::get('/data/regions/', [Controllers\RegionsController::class, 'index']);
+Route::get('/data/regions/delete/{id}', [Controllers\RegionsController::class, 'delete']);
+Route::post('/data/regions/edit', [Controllers\RegionsController::class, 'edit']);
+Route::post('/data/regions/new', [Controllers\RegionsController::class, 'new']);
 
 // Main Views
 Route::get('/', function () {
@@ -54,9 +58,9 @@ Route::get('/login', [Controllers\LoginController::class, 'index']);
 Route::post('/login', [Controllers\LoginController::class, 'login']);
 Route::get('/logout', [Controllers\LoginController::class, 'logout']);
 
-Route::get('/messages', function () {
-    return view('messages');
-});
+Route::get('/messages', [Controllers\MessagesController::class, 'index']);
+Route::get('/messages/view/{id}', [Controllers\MessagesController::class, 'view']);
+Route::get('/messages/delete/{id}', [Controllers\MessagesController::class, 'delete']);
 
 // Recommendations
 Route::get('/recommendations/', [Controllers\RecommendationsController::class, 'index']);

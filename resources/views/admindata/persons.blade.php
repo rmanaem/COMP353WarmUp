@@ -93,10 +93,11 @@
                     <td><input type="text" class="form-control form-control-sm" name="citizenship" placeholder="Citizenship" value="<?= $person->Citizenship ?>" /></td>
                     <td><input type="text" class="form-control form-control-sm" name="email" placeholder="Email Address" value="<?= $person->EmailAddress ?>" /></td>
                     <td><button type="button" class="btn btn-warning btn-sm w-100" onclick="Cancel(<?= $person->PersonID ?>)">Cancel</button></td>
-                    <td><button type="submit" class="btn btn-success btn-sm w-100">Save</a></td>
+                    <td><button type="submit" class="btn btn-success btn-sm w-100">Save</button></td>
                 </tr>
             </form>
         <?php endforeach; ?>
+    </table>
 </div>
 
 <script>
