@@ -13,7 +13,7 @@ class ReportsController extends Controller {
 
     public function historyGet() {
         $alerts = [];
-        $person = DB::table('Person')->where('MedicareID', '=', $_POST['MedicareID'])->first();
+        $person = DB::table('Person')->where('MedicareID', '=', $_POST['medicareID'])->first();
         if ($person == null) {
             array_push($alerts, [
                 'type' => 'warning',
