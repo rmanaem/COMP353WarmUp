@@ -34,10 +34,10 @@
                 <td><button class="btn btn-warning btn-sm w-100" onclick="Edit(<?= $contract->employmentcontractid  ?>)">Edit</button></td>
                     <td>
                         <button id="delete_<?= $contract->employmentcontractid ?>" class="btn btn-danger btn-sm w-100" onClick="Delete(<?= $contract->employmentcontractid ?>)">Delete</button>
-                        <a id="confirm_<?= $contract->employmentcontractid ?>" href="data/publichealthworkers/contract/<?= $person->publichealthworkerID ?>/delete/<?= $contract->employmentcontractid ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
+                        <a id="confirm_<?= $contract->employmentcontractid ?>" href="data/publichealthworkers/contract/<?= $person->PublicHealthWorkerID ?>/delete/<?= $contract->employmentcontractid ?>" class="btn btn-danger btn-sm w-100" style="display:none">Are you sure?</a>
                     </td>
                 </tr>
-                <form action="data/publichealthworkers/contract/<?= $person->publichealthworkerID ?>/edit" method="POST">
+                <form action="data/publichealthworkers/contract/<?= $person->PublicHealthWorkerID ?>/edit" method="POST">
                 @csrf
                     <tr id="editing_<?= $contract->employmentcontractid ?>" style="display:none">
                         <td scope="row">
