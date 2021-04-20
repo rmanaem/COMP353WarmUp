@@ -15,7 +15,7 @@
                     <th scope="col">Schedule</th>
                 </tr>
             </thead>
-            <form action="data/publichealthworkers/contract/<?= $person->publichealthworkerID ?>/new" method="POST">
+            <form action="data/publichealthworkers/contract/<?= $person->publichealthworkerid ?>/new" method="POST">
                 @csrf
                 <tr>
                     <td scope="row"><input type="text" class="form-control form-control-sm" name="publichealthcentre" placeholder="Public Health Centre"></td>
