@@ -42,7 +42,7 @@
                     <tr id="editing_<?= $contract->EmploymentContractID ?>" style="display:none">
                         <td scope="row">
                             <input type="hidden" name="id" value="<?= $contract->EmploymentContractID ?>" />
-                            <input type="text" class="form-control form-control-sm" name="publichealthcentre" placeholder="Public Health Centre" value="<?= $contract->publichealthcentreid ?>" />
+                            <input type="text" class="form-control form-control-sm" name="publichealthcentre" placeholder="Public Health Centre" value="<?= $contract->PublicHealthCentreID ?>" />
                         </td>
                         <td><input type="text" class="form-control form-control-sm" name="startdate" placeholder="Start Date" value="<?= $contract->StartDate ?>" /></td>
                         <td><input type="text" class="form-control form-control-sm" name="enddate" placeholder="End Date" value="<?= $contract->EndDate ?>" /></td>
