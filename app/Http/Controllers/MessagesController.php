@@ -14,17 +14,17 @@ class MessagesController extends Controller {
     public function view($id) {
         $alerts = [];
 
-        DB::table('Message')
-            ->where('ID', '=', $id)
-            ->update(['MessageRead' => 1]);
-        $message = DB::table('Message')
-            ->join('MessageTemplate', 'MessageTemplate.ID', '=', 'Message.TemplateID')
-            ->select('Message.ID as ID', 'Message.DateTime as DateTime', 'MessageTemplate.Subject as Subject', 'Message.Text as Text')
-            ->where('Message.ID', '=', $id)
+        DB::table('messages')
+            ->where('id', '=', $id)
+            ->update(['message_read' => 1]);
+            $messages = DB::table('messages')
+            ->join('message_templates', 'message_templates.id', '=', 'messages.template_id')
+            ->select('messages.id as id', 'messages.date_time as date_time', 'message_templates.subject as subject', 'messages.text as text')
+            ->where('messages.id', '=', $id)
             ->first();
         
-        return view ('/messageDetails', [
-            'message' => $message,
+        return view ('/messagesDetails', [
+            'messages' => $messages,
             'alerts' => $alerts
         ]);
     }
@@ -32,12 +32,12 @@ class MessagesController extends Controller {
     public function delete($id) {
         $alerts = [];
         try {
-            DB::table('Message')->delete($id);
+            DB::table('messages')->delete($id);
         } catch(\Illuminate\Database\QueryException $ex) {
-            $message = $ex->getMessage();
+            $messages = $ex->getMessage();
             array_push($alerts, [
                 'type' => 'danger',
-                'text' => "Query exception: $message"
+                'text' => "Query exception: $messages"
             ]);
         }
         
@@ -47,15 +47,15 @@ class MessagesController extends Controller {
     private function FetchData($alerts) {
         $account = Helpers\LoginHelper::GetAccount();
 
-        $messages = DB::table('Message')
-            ->join('MessageTemplate', 'MessageTemplate.ID', '=', 'Message.TemplateID')
-            ->where('PersonID', '=', $account->ID)
-            ->select('Message.ID as ID', 'Message.PersonID as PersonID', 'Message.MessageRead as Read', 'Message.DateTime as DateTime', 'MessageTemplate.Subject as Subject')
-            ->orderByDesc('Message.DateTime')
+        $messagess = DB::table('messages')
+            ->join('message_templates', 'message_templates.id', '=', 'messages.template_id')
+            ->where('person_id', '=', $account->id)
+            ->select('messages.id as id', 'messages.person_id as person_id', 'messages.message_read as read', 'messages.date_time as date_time', 'message_templates.subject as subject')
+            ->orderByDesc('messages.date_time')
             ->get();
         
         return view ('/messages', [
-            'messages' => $messages,
+            'messages' => $messagess,
             'alerts' => $alerts
         ]);
     }

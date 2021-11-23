@@ -9,11 +9,11 @@ class LoginHelper {
         $user = $_COOKIE['user'] ?? '';
         $pass = $_COOKIE['pass'] ?? '';
 
-        return DB::table('Person')
-                    ->leftJoin('PublicHealthWorker', 'PublicHealthWorker.personID', '=', 'Person.ID')
-                    ->where('Person.MedicareID', '=', $user)
-                    ->where('Person.DateOfBirth', '=', $pass)
-                    ->select('Person.ID as ID', 'PublicHealthWorker.ID as WorkerID', 'FirstName', 'LastName', 'MedicareID')
+        return DB::table('people')
+                    ->leftJoin('public_health_workers', 'public_health_workers.person_id', '=', 'people.id')
+                    ->where('people.medicare_id', '=', $user)
+                    ->where('people.date_of_birth', '=', $pass)
+                    ->select('people.id as id', 'public_health_workers.id as worker_id', 'first_name', 'last_name', 'medicare_id')
                     ->first();
     }
 
@@ -21,16 +21,16 @@ class LoginHelper {
         $user = $_COOKIE['user'] ?? '';
         $pass = $_COOKIE['pass'] ?? '';
 
-        $account = DB::table('Person')
-                    ->leftJoin('PublicHealthWorker', 'PublicHealthWorker.personID', '=', 'Person.ID')
-                    ->where('Person.MedicareID', '=', $user)
-                    ->where('Person.DateOfBirth', '=', $pass)
-                    ->select('Person.ID as PersonID', 'PublicHealthWorker.ID as WorkerID', 'FirstName', 'LastName')
+        $account = DB::table('people')
+                    ->leftJoin('public_health_workers', 'public_health_workers.person_id', '=', 'people.id')
+                    ->where('people.medicare_id', '=', $user)
+                    ->where('people.date_of_birth', '=', $pass)
+                    ->select('people.id as person_id', 'public_health_workers.id as worker_id', 'first_name', 'last_name')
                     ->first();
 
         $permissions = 0;
         if ($account != null) {
-            if ($account->WorkerID == null) {
+            if ($account->worker_id == null) {
                 $permissions = 1;
             } else {
                 $permissions = 2;

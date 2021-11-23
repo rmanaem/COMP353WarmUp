@@ -29,7 +29,7 @@
                         <a href="https://github.com/Dwarf1er">Antoine Poulin</a>
                     </div>
                     <div class="links">
-                        <a href="https://github.com/Dwarf1er/COMP353WarmUp/">GitHub Repository</a>
+                        <a href="https://github.com/Dwarf1er/covid-web-tracker/">GitHub Repository</a>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
     <div class="row">
         <div class="col">
             © 2021 Copyright:
-            <a class="text-light" href="https://github.com/Dwarf1er/COMP353WarmUp/">Team wdc353_4</a>
+            <a class="text-light" href="https://github.com/Dwarf1er/covid-web-tracker/">Team wdc353_4</a>
         </div>
     </div>
 </footer>

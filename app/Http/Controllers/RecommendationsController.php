@@ -26,7 +26,7 @@ class RecommendationsController extends Controller
 
         // Update the recommendation
         try {
-            DB::table('Recommendation')
+            DB::table('recommendations')
                 ->where('ID', '=', $_POST['id'])
                 ->update([
                 'Text' => $_POST['text']
@@ -60,7 +60,7 @@ class RecommendationsController extends Controller
         }
 
         try {
-            DB::table('Recommendation')->delete($id);
+            DB::table('recommendations')->delete($id);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
             array_push($alerts, [
@@ -86,7 +86,7 @@ class RecommendationsController extends Controller
 
         // Create new recommendation
         try {
-            DB::table('Recommendation')->insert([
+            DB::table('recommendations')->insert([
                 'Text' => $_POST['text']
             ]);
             array_push($alerts, [
@@ -110,7 +110,7 @@ class RecommendationsController extends Controller
     private function FetchView($alerts) {
 
         // Get the table
-        $query = DB::table('Recommendation');
+        $query = DB::table('recommendations');
         
         // Serve the view
         $permissions = Helpers\LoginHelper::GetPermissionsLevel();

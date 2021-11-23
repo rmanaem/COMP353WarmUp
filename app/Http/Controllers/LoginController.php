@@ -16,16 +16,16 @@ class LoginController extends Controller {
         $user = $_POST['user'] ?? '';
         $pass = $_POST['pass'] ?? '';
 
-        $accountExists = DB::table('Person')
-            ->where('MedicareID', '=', $user)
-            ->where('DateOfBirth', '=', $pass)
+        $accountExists = DB::table('people')
+            ->where('medicare_id', '=', $user)
+            ->where('date_of_birth', '=', $pass)
             ->exists();
 
         if ($accountExists) {
             setcookie('user', $user);
             setcookie('pass', $pass);
 
-            header("Location: /COMP353WarmUp/public/");
+            header("Location: /");
             exit;
         } else {
             array_push($alerts, [
@@ -43,7 +43,7 @@ class LoginController extends Controller {
         setcookie('user', '', time() - 100);
         setcookie('pass', '', time() - 100);
 
-        header("Location: /COMP353WarmUp/public/");
+        header("Location: /");
         exit;
     }
 }

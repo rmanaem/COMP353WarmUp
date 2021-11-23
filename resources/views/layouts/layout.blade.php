@@ -28,11 +28,11 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <base href="/COMP353WarmUp/public/">
+        <!-- <base href="/covid-web-tracker/public/"> -->
     </head>
     <body class="antialiased">
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="/">
                 <img src="{{URL::asset("/images/covid.png")}}" width="30" height="30" alt="covid virus molecule">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,22 +41,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <?php if ($account == null) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="login">Login</a>
+                        <a class="nav-link" href="/login">Login</a>
                     </li>
                     <?php else : ?>
                     <li class="nav-item">
-                        <div class="nav-link">Welcome, <?= $account->FirstName ?> <?= $account->LastName ?></div>
+                        <div class="nav-link">Welcome, <?= $account->first_name ?> <?= $account->last_name ?></div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout">Logout</a>
+                        <a class="nav-link" href="/logout">Logout</a>
                     </li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="recommendations">Recommendations</a>
+                        <a class="nav-link" href="/recommendations">Recommendations</a>
                     </li>
                     @if($permissions != 0)
                     <li class="nav-item dropdown">
@@ -64,9 +64,9 @@
                         Data
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="data/persons">Persons</a>
+                            <a class="dropdown-item" href="data/people">People</a>
                             @if($permissions == 2)
-                                <a class="dropdown-item" href="data/publichealthworkers">Public Health Workers</a>
+                                <a class="dropdown-item" href="admindata/publichealthworkers">Public Health Workers</a>
                             @endif
                             <a class="dropdown-item" href="data/publichealthcentres">Public Health Centres</a>
                             <a class="dropdown-item" href="data/regions">Regions</a>

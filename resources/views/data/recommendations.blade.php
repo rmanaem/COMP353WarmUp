@@ -14,7 +14,7 @@
                 <ul>
                 @foreach ($recommendations as $recommendation)
                 <li>
-                    {!! html_entity_decode(nl2br(e($recommendation->Text))) !!}
+                    {!! html_entity_decode(nl2br(e($recommendation->text))) !!}
                 </li>
                 @endforeach
             </ul>

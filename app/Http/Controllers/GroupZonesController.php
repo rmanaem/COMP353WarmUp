@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Helpers;
 
-class GroupZonesController extends Controller
+class group_zonesController extends Controller
 {
     public function index() {
         return $this->FetchView([]);
@@ -26,14 +26,14 @@ class GroupZonesController extends Controller
 
         // Update the group zone
         try {
-            DB::table('GroupZone')
-                ->where('ID', '=', $_POST['id'])
+            DB::table('group_zones')
+                ->where('id', '=', $_POST['id'])
                 ->update([
-                'Name' => $_POST['name']
+                'name' => $_POST['name']
             ]);
             array_push($alerts, [
                 'type' => 'success',
-                'text' => "GroupZone updated"
+                'text' => "group_zones updated"
             ]);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
@@ -60,7 +60,7 @@ class GroupZonesController extends Controller
         }
 
         try {
-            DB::table('GroupZone')->delete($id);
+            DB::table('group_zones')->delete($id);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
             array_push($alerts, [
@@ -86,12 +86,12 @@ class GroupZonesController extends Controller
 
         // Create new group zone
         try {
-            DB::table('GroupZone')->insert([
-                'Name' => $_POST['name']
+            DB::table('group_zones')->insert([
+                'name' => $_POST['name']
             ]);
             array_push($alerts, [
                 'type' => 'success',
-                'text' => "New groupzone created"
+                'text' => "New group_zones created"
             ]);
         } catch(\Illuminate\Database\QueryException $ex) {
             $message = $ex->getMessage();
@@ -109,7 +109,7 @@ class GroupZonesController extends Controller
     private function FetchView($alerts) {
 
         // Get the table
-        $query = DB::table('GroupZone');
+        $query = DB::table('group_zones');
         
         // Apply search queries
         if (array_key_exists('name', $_GET) && $_GET['name'] != '') {
@@ -121,12 +121,12 @@ class GroupZonesController extends Controller
         $permissions = Helpers\LoginHelper::GetPermissionsLevel();
         $page = '';
         if ($permissions == 2) {
-            $page = '/admindata/groupzones';
+            $page = '/admindata/group_zones';
         } else {
-            $page = '/data/groupzones';
+            $page = '/data/group_zones';
         }
         return view ($page, [
-            'groupzones' => $query->get(),
+            'group_zones' => $query->get(),
             'alerts' => $alerts
         ]);
     }

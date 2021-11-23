@@ -45,20 +45,20 @@
                 </tr>
                 <?php foreach($history as $record) : ?>
                 <tr>
-                    <td><?= $record->Date ?></td>
-                    <td style="color:<?= $record->Fever >= 38.1 ? 'red' : 'green' ?>"><?= $record->Fever ?></td>
-                    <td><?= $record->Cough == 1 ? '&#10003;' : '&#10008;' ?></td>
-                    <td><?= $record->ShortnessOfBreath == 1 ? '&#10003;' : '&#10008;' ?></td>
-                    <td><?= $record->LossOfTaste == 1 ? '&#10003;' : '&#10008;' ?></td>
-                    <td><?= $record->LossOfSmell == 1 ? '&#10003;' : '&#10008;' ?></td>
-                    <td><?= $record->Nausea == 1 ? '&#10003;' : '&#10008;' ?></td>
-                    <td><?= $record->StomachAche == 1 ? '&#10003;' : '&#10008;' ?></td>
-                    <td><?= $record->Vomiting == 1 ? '&#10003;' : '&#10008;' ?></td>
-                    <td><?= $record->Headache == 1 ? '&#10003;' : '&#10008;' ?></td>
-                    <td><?= $record->MusclePain == 1 ? '&#10003;' : '&#10008;' ?></td>
-                    <td><?= $record->Diarrhea == 1 ? '&#10003;' : '&#10008;' ?></td>
-                    <td><?= $record->SoreThroat == 1 ? '&#10003;' : '&#10008;' ?></td>
-                    <td><?= $record->Other ?></td>
+                    <td><?= $record->date ?></td>
+                    <td style="color:<?= $record->fever >= 38.1 ? 'red' : 'green' ?>"><?= $record->fever ?></td>
+                    <td><?= $record->cough == 1 ? '&#10003;' : '&#10008;' ?></td>
+                    <td><?= $record->shortness_of_breath == 1 ? '&#10003;' : '&#10008;' ?></td>
+                    <td><?= $record->loss_of_taste == 1 ? '&#10003;' : '&#10008;' ?></td>
+                    <td><?= $record->loss_of_smell == 1 ? '&#10003;' : '&#10008;' ?></td>
+                    <td><?= $record->nausea == 1 ? '&#10003;' : '&#10008;' ?></td>
+                    <td><?= $record->stomach_ache == 1 ? '&#10003;' : '&#10008;' ?></td>
+                    <td><?= $record->vomiting == 1 ? '&#10003;' : '&#10008;' ?></td>
+                    <td><?= $record->headache == 1 ? '&#10003;' : '&#10008;' ?></td>
+                    <td><?= $record->muscle_pain == 1 ? '&#10003;' : '&#10008;' ?></td>
+                    <td><?= $record->diarrhea == 1 ? '&#10003;' : '&#10008;' ?></td>
+                    <td><?= $record->sore_throat == 1 ? '&#10003;' : '&#10008;' ?></td>
+                    <td><?= $record->other ?></td>
                 </tr>
                 <?php endforeach; ?>
             </table>

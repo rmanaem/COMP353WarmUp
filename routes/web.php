@@ -30,10 +30,10 @@ Route::post('/data/groupzones/edit', [Controllers\GroupZonesController::class, '
 Route::post('/data/groupzones/new', [Controllers\GroupZonesController::class, 'new']);
 
 // Persons
-Route::get('/data/persons/', [Controllers\PersonsController::class, 'index']);
-Route::get('/data/persons/delete/{id}', [Controllers\PersonsController::class, 'delete']);
-Route::post('/data/persons/edit', [Controllers\PersonsController::class, 'edit']);
-Route::post('/data/persons/new', [Controllers\PersonsController::class, 'new']);
+Route::get('/data/people/', [Controllers\PeopleController::class, 'index']);
+Route::get('/data/people/delete/{id}', [Controllers\PeopleController::class, 'delete']);
+Route::post('/data/people/edit', [Controllers\PeopleController::class, 'edit']);
+Route::post('/data/people/new', [Controllers\PeopleController::class, 'new']);
 
 // Public Health Workers
 Route::get('/data/publichealthworkers/', [Controllers\PublicHealthWorkersController::class, 'index']);
