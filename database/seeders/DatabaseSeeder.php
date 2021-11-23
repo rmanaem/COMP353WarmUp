@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            AlertLevelsSeeder::class,
             RegionsSeeder::class,
             CitiesSeeder::class,
             PostalCodesSeeder::class,
@@ -23,7 +24,14 @@ class DatabaseSeeder extends Seeder
             GroupZonesSeeder::class,
             GroupZoneMembershipsSeeder::class,
             PublicHealthWorkersSeeder::class,
-            PublicHealthCentresSeeder::class
+            PublicHealthCentresSeeder::class,
+            EmploymentContractsSeeder::class,
+            PcrTestsSeeder::class,
+            SymptomHistoriesSeeder::class,
+            RegionAlertHistoriesSeeder::class,
+            MessageTemplatesSeeder::class,
+            MessagesSeeder::class,
+            RecommendationsSeeder::class
         ]);
     }
 }
