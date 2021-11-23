@@ -1,94 +1,94 @@
-CREATE TABLE Region(
-	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(255),
-    Province CHAR(2) CHECK (Province IN ('NL', 'PE', 'NS', 'NB', 'QC', 'ON', 'MB', 'SK', 'AB', 'BC', 'YT', 'NT', 'NU')),
-    UNIQUE(Name, Province)
-);
+-- CREATE TABLE Region(
+-- 	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     Name VARCHAR(255),
+--     Province CHAR(2) CHECK (Province IN ('NL', 'PE', 'NS', 'NB', 'QC', 'ON', 'MB', 'SK', 'AB', 'BC', 'YT', 'NT', 'NU')),
+--     UNIQUE(Name, Province)
+-- );
     
-CREATE TABLE City(
-	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    RegionID INT NOT NULL,
-    Name Varchar(255),
-    FOREIGN KEY (RegionID) REFERENCES Region(ID)
-		ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
+-- CREATE TABLE City(
+-- 	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     RegionID INT NOT NULL,
+--     Name Varchar(255),
+--     FOREIGN KEY (RegionID) REFERENCES Region(ID)
+-- 		ON DELETE CASCADE
+--         ON UPDATE CASCADE
+-- );
 
-CREATE TABLE PostalCode(
-	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    CityID INT NOT NULL,
-    Code CHAR(6) UNIQUE,
-    FOREIGN KEY (CityID) REFERENCES City(ID)
-		ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
+-- CREATE TABLE PostalCode(
+-- 	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     CityID INT NOT NULL,
+--     Code CHAR(6) UNIQUE,
+--     FOREIGN KEY (CityID) REFERENCES City(ID)
+-- 		ON DELETE CASCADE
+--         ON UPDATE CASCADE
+-- );
 
-CREATE TABLE Person(
-	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    FirstName VARCHAR(255),
-    LastName VARCHAR(255),
-    DateOfBirth DATE,
-    MedicareID CHAR(12) UNIQUE,
-    PhoneNumber VARCHAR(15),
-    Address VARCHAR(255),
-    PostalCodeID INT NOT NULL,
-    Citizenship VARCHAR(255),
-    EmailAddress VARCHAR(255),
-    FOREIGN KEY (PostalCodeID) REFERENCES PostalCode(ID)
-		ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
+-- CREATE TABLE Person(
+-- 	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     FirstName VARCHAR(255),
+--     LastName VARCHAR(255),
+--     DateOfBirth DATE,
+--     MedicareID CHAR(12) UNIQUE,
+--     PhoneNumber VARCHAR(15),
+--     Address VARCHAR(255),
+--     PostalCodeID INT NOT NULL,
+--     Citizenship VARCHAR(255),
+--     EmailAddress VARCHAR(255),
+--     FOREIGN KEY (PostalCodeID) REFERENCES PostalCode(ID)
+-- 		ON DELETE CASCADE
+--         ON UPDATE CASCADE
+-- );
 
-CREATE TABLE Parentage(
-	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    ParentID INT NOT NULL,
-    ChildID INT NOT NULL,
-    FOREIGN KEY (ParentID) REFERENCES Person(ID)
-		ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    FOREIGN KEY (ChildID) REFERENCES Person(ID)
-		ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    UNIQUE(ParentID, ChildID)
-);
+-- CREATE TABLE Parentage(
+-- 	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     ParentID INT NOT NULL,
+--     ChildID INT NOT NULL,
+--     FOREIGN KEY (ParentID) REFERENCES Person(ID)
+-- 		ON DELETE CASCADE
+--         ON UPDATE CASCADE,
+--     FOREIGN KEY (ChildID) REFERENCES Person(ID)
+-- 		ON DELETE CASCADE
+--         ON UPDATE CASCADE,
+--     UNIQUE(ParentID, ChildID)
+-- );
 
-CREATE TABLE GroupZone(
-	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(255)
-);
+-- CREATE TABLE GroupZone(
+-- 	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     Name VARCHAR(255)
+-- );
 
-CREATE TABLE GroupZoneMembership(
-	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    PersonID INT NOT NULL,
-    GroupZoneID INT NOT NULL,
-    FOREIGN KEY (PersonID) REFERENCES Person(ID)
-		ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    FOREIGN KEY (GroupZoneID) REFERENCES GroupZone(ID)
-		ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    UNIQUE(PersonID, GroupZoneID)
-);
+-- CREATE TABLE GroupZoneMembership(
+-- 	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     PersonID INT NOT NULL,
+--     GroupZoneID INT NOT NULL,
+--     FOREIGN KEY (PersonID) REFERENCES Person(ID)
+-- 		ON DELETE CASCADE
+--         ON UPDATE CASCADE,
+--     FOREIGN KEY (GroupZoneID) REFERENCES GroupZone(ID)
+-- 		ON DELETE CASCADE
+--         ON UPDATE CASCADE,
+--     UNIQUE(PersonID, GroupZoneID)
+-- );
 
-CREATE TABLE PublicHealthWorker(
-	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    PersonID INT NOT NULL,
-    FOREIGN KEY (PersonID) REFERENCES Person(ID)
-		ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
+-- CREATE TABLE PublicHealthWorker(
+-- 	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     PersonID INT NOT NULL,
+--     FOREIGN KEY (PersonID) REFERENCES Person(ID)
+-- 		ON DELETE CASCADE
+--         ON UPDATE CASCADE
+-- );
 
-CREATE TABLE PublicHealthCentre(
-	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(255),
-    Address VARCHAR(255),
-    PhoneNumber CHAR(15),
-    Website VARCHAR(255),
-    Type CHAR(1) CHECK (TYPE IN ('h', 'c', 's')),
-    DriveThrough BOOL,
-    AppointmentType INT CHECK (AppointmentType IN (0, 1, 2)),
-    UNIQUE(Name, Address, Type)
-);
+-- CREATE TABLE PublicHealthCentre(
+-- 	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     Name VARCHAR(255),
+--     Address VARCHAR(255),
+--     PhoneNumber CHAR(15),
+--     Website VARCHAR(255),
+--     Type CHAR(1) CHECK (TYPE IN ('h', 'c', 's')),
+--     DriveThrough BOOL,
+--     AppointmentType INT CHECK (AppointmentType IN (0, 1, 2)),
+--     UNIQUE(Name, Address, Type)
+-- );
 
 CREATE TABLE EmploymentContract(
 	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

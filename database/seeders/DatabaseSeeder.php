@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PostalCode;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            RegionsSeeder::class,
+            CitiesSeeder::class,
+            PostalCodesSeeder::class,
+            PeopleSeeder::class,
+            ParentagesSeeder::class,
+            GroupZonesSeeder::class,
+            GroupZoneMembershipsSeeder::class,
+            PublicHealthWorkersSeeder::class,
+            PublicHealthCentresSeeder::class
+        ]);
     }
 }
