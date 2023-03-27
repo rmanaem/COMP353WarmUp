@@ -44,7 +44,7 @@ composer global require Laravel/installer
 
 ### Run the application
 
-Lastly, having installed/configuerd the dependencies, you can now run the application by running the following command in powershell:
+Lastly, having installed and configuerd the dependencies, you can run the application by running the following command in powershell:
 
 ```powershell
 cd "directory/where/you/cloned/the/repo"
@@ -52,3 +52,7 @@ php artisan serve
 ```
 
 The application will run on port 8000 of the local host: http://localhost:8000
+
+## License
+
+Covid web tracker is developed under the terms of MIT License.
