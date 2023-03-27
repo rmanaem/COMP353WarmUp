@@ -8,26 +8,31 @@ The application maintains personal information about the population involved in 
 
 Covid web tracker is developed using [Laravel](https://laravel.com/), [Compose](https://getcomposer.org/), and [MySQL](https://www.mysql.com/). The application offers a graphical user interface that contains an authentication layer and a CRUD API. Authentication layer separates regular users from authorized users and provides a different view based on user's permissions. In their portal regular users will receive messages regarding the status their PCR test and alerts which includes the change in the status of their region and the new guidelines that should be followed. Authorized users however have access to the CURD API where they can send and edit alerts and messages to regular users.
 
-### Database design
+### Database Design
 
 The E/R diagram below illustrates the design of the application's database.
 
 <p alt="ER diagram-image" align="center"><a href="https://github.com/rmanaem/covid-web-tracker/blob/master/img/diagram.png"><img src="https://github.com/rmanaem/covid-web-tracker/blob/master/img/diagram.png?raw=true"/></a></p>
 
-# Dependencies
+## Local Setup
 
--   PHP
--   Composer
+To set up and run the application, you need to have the dependencies installed/configured.
 
-## Windows
+### PHP
 
-### Download XAMPP's installer
+You will need a server and a dependency manager to run the application.
 
-Get XAMPP's installer: https://www.apachefriends.org/download.html
+#### XAMPP
 
-### Download Composer's installer
+[XAMPP](https://www.apachefriends.org/) is a free and open-source tool cross-platform web server solution package that offers an interpreter (among other things) for scripts written in PHP. For installation and configuration instructions of XAMPP server, refer to the official website/documentation.
 
-Get Composer's installer: https://getcomposer.org/download/
+#### Composer
+
+[Composer](https://getcomposer.org/) is an application-level dependency manager for PHP. For installation and configuration instructions of Composer, refer to the official website/documentation.
+
+### MySQL
+
+The application database is developed using MySQL. For installation and configuration instructions of MySQL, refer to the official website/documentation.
 
 ### Configure Compose and Laravel
 
@@ -37,16 +42,16 @@ In a powershell instance enter the following command:
 composer global require Laravel/installer
 ```
 
-## Executing the project
+### Run the application
 
-In a powershell window enter the following commands:
+Lastly, having installed/configuerd the dependencies, you can now run the application by running the following command in powershell:
 
 ```powershell
 cd "directory/where/you/cloned/the/repo"
 php artisan serve
 ```
 
-The project will run here: http://localhost:8000
+The application will run on port 8000 of the local host: http://localhost:8000
 
 # Languages
 
