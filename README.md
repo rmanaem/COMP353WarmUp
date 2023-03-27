@@ -8,6 +8,12 @@ The application maintains personal information about the population involved in 
 
 Covid web tracker is developed using [Laravel](https://laravel.com/), [Compose](https://getcomposer.org/), and [MySQL](https://www.mysql.com/). The application offers a graphical user interface that contains an authentication layer and a CRUD API. Authentication layer separates regular users from authorized users and provides a different view based on user's permissions. In their portal regular users will receive messages regarding the status their PCR test and alerts which includes the change in the status of their region and the new guidelines that should be followed. Authorized users however have access to the CURD API where they can send and edit alerts and messages to regular users.
 
+### Database design
+
+The E/R diagram below illustrates the design of the application's database.
+
+<p alt="ER diagram-image" align="center"><a href="https://github.com/rmanaem/covid-web-tracker/blob/master/img/diagram.png"><img src="https://github.com/rmanaem/covid-web-tracker/blob/master/img/diagram.png?raw=true"/></a></p>
+
 # Dependencies
 
 -   PHP
