@@ -4,6 +4,10 @@ Covid web tracker is web-based tool designed to emulate some functionalities of 
 
 The application maintains personal information about the population involved in the pandemic whether infected or not, information about Public Health workers involved in the PCR (Polymerase Chain Reaction) tests, information about the Public Health facilities where PCR tests are performed, and the diagnostic results.
 
+## Architecture
+
+Covid web tracker is developed using [Laravel](https://laravel.com/), [Compose](https://getcomposer.org/), and [MySQL](https://www.mysql.com/). The application offers a graphical user interface that contains an authentication layer and a CRUD API. Authentication layer separates regular users from authorized users and provides a different view based on user's permissions. In their portal regular users will receive messages regarding the status their PCR test and alerts which includes the change in the status of their region and the new guidelines that should be followed. Authorized users however have access to the CURD API where they can send and edit alerts and messages to regular users.
+
 # Dependencies
 
 -   PHP
