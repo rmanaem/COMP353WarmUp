@@ -52,10 +52,3 @@ php artisan serve
 ```
 
 The application will run on port 8000 of the local host: http://localhost:8000
-
-# Languages
-
--   HTML5
--   CSS3
--   PHP
--   MySQL
