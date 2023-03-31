@@ -55,4 +55,4 @@ The application will run on port 8000 of the local host: http://localhost:8000
 
 ## License
 
-Covid web tracker is developed under the terms of MIT License.
+Covid web tracker is licensed under the terms of [MIT License](LICENSE).
